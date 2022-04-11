@@ -5,6 +5,8 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const { readdirSync} = require('fs');
 require("dotenv").config()
 const client = require("../index")
+let i = 0
+const { result } = require("../coindata/ethereum.json");
 
 const { updateGas } = require("./updateGas")
 updateGas()
@@ -46,18 +48,16 @@ for (const file of commandFiles) {
             if (err) console.error(err);
         }
     })()
-    for (var i = 0; i < Infinity; i++) {
 
-        const { FastGasPrice, ProposeGasPrice, SafeGasPrice} = require("../coindata/ethereum.json");
+    
+        setInterval(() => {
 	
-				let status = [`⚡${FastGasPrice} |🚶${ProposeGasPrice} |🐢${SafeGasPrice} |`]
+				let status = [`⚡${result.FastGasPrice} |🚶${result.ProposeGasPrice} |🐢${result.SafeGasPrice} |`]
 		
 
 				client.user.setPresence({ activities: [{ name: `${status}` }], status: 'dnd' });
 
-			
-		}
-	  await delay(Number(15) * 1000);
-
+			console.log("test")
+            }, 15000);
 
 })
