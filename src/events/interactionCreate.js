@@ -1,33 +1,33 @@
-const client = require("../index")
-const { readdirSync} = require('fs');
+const client = require("../index");
+const { readdirSync } = require("fs");
 
+client.once("interactionCreate", async (interaction) => {
+  const commandFiles = readdirSync("./src/commands/").filter((file) =>
+    file.endsWith(".js")
+  );
+  const commands = [];
 
-client.once('interactionCreate', async (interaction) => {
+  for (const file of commandFiles) {
+    const command = require(`../commands/${file}`);
+    commands.push(command.data.toJSON());
+    client.commands.set(command.data.name, command);
+  }
 
-    const commandFiles = readdirSync("./src/commands/").filter(file => file.endsWith(".js"));
-    const commands = [];
+  console.log(commandFiles);
+  if (!interaction.isCommand()) return;
 
-    for (const file of commandFiles) {
-        const command = require(`../commands/${file}`);
-        commands.push(command.data.toJSON());
-        client.commands.set(command.data.name, command)
-    }
+  const command = client.commands.get(interaction.commandName);
 
-    console.log(commandFiles)
-    if (!interaction.isCommand()) return;
+  if (!command) return;
 
-    const command = client.commands.get(interaction.commandName)
+  try {
+    command.execute(interaction, client);
+  } catch (err) {
+    if (err) console.error(err);
 
-    if (!command) return;
-
-    try {
-         command.execute(interaction, client);
-    } catch(err) {
-        if (err) console.error(err);
-
-         interaction.reply({
-            content: "An error occurred while executing that command.",
-            ephemeral: true
-        })
-        }
-    })
+    interaction.reply({
+      content: "An error occurred while executing that command.",
+      ephemeral: true,
+    });
+  }
+});
