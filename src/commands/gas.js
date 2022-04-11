@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const fetch = require("node-fetch");
+const { result } = require("../coindata/ethereum.json");
 const { MessageEmbed, version: djsversion } = require("discord.js");
 
 module.exports = {
@@ -15,30 +16,27 @@ module.exports = {
   async execute(interaction, client) {
     switch (interaction.options.getSubcommand()) {
       case "ethereum": {
-        const data = await fetch(
-          `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`
-        ).then((res) => res.json());
-
         let gasembed = new MessageEmbed()
           // .setColor('#343434')
           .setTitle("Ethereum gas fees")
           .setThumbnail(
             "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/1257px-Ethereum_logo_2014.svg.png"
           )
+          .setDescription("Last Block: **" + result.LastBlock + "**")
           .addFields(
             {
               name: "⚡Fast",
-              value: `> **${data.result.FastGasPrice}**gwei`,
+              value: `> **${result.FastGasPrice}**gwei`,
               inline: false,
             },
             {
               name: "🚶Normal",
-              value: `> **${data.result.ProposeGasPrice}**gwei`,
+              value: `> **${result.ProposeGasPrice}**gwei`,
               inline: false,
             },
             {
               name: "🐢Slow",
-              value: `> **${data.result.SafeGasPrice}**gwei`,
+              value: `> **${result.SafeGasPrice}**gwei`,
               inline: false,
             }
           )

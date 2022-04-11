@@ -2,11 +2,11 @@
   "status": "1",
   "message": "OK",
   "result": {
-    "LastBlock": "14565390",
-    "SafeGasPrice": "89",
-    "ProposeGasPrice": "89",
-    "FastGasPrice": "90",
-    "suggestBaseFee": "88.676185009",
-    "gasUsedRatio": "0.496990552221317,0.258673014098867,0.485980443119619,0.999543802216092,0.208349094294495"
+    "LastBlock": "14566165",
+    "SafeGasPrice": "62",
+    "ProposeGasPrice": "63",
+    "FastGasPrice": "65",
+    "suggestBaseFee": "61.59033922",
+    "gasUsedRatio": "0.605743166666667,0.0709689011319554,0.999463766166182,0.913461690556749,0.386336139308725"
   }
 }
