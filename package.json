@@ -8,6 +8,10 @@
     "start": "node .",
     "sharding": "node ShardingManager.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mezotv/Crypto-Helper-Remake"
+  },
   "keywords": [
     "Crypto",
     "Mezo",
