@@ -1,6 +1,10 @@
 const client = require("../index");
 const { readdirSync } = require("fs");
-client.once("interactionCreate", async (interaction) => {
+
+
+
+
+client.on("interactionCreate", async (interaction) => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
     file.endsWith(".js")
   );
