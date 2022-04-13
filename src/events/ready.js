@@ -1,21 +1,19 @@
 const { REST } = require("@discordjs/rest");
-const fetch = require("node-fetch");
 const { Routes } = require("discord-api-types/v9");
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const { readdirSync } = require("fs");
 require("dotenv").config();
 const client = require("../index");
-let i = 0;
 const { result } = require("../coindata/ethereum.json");
 
 const { updateGas } = require("./updateGas");
 updateGas();
+const { autoPoster } = require("./autoPoster");
+autoPoster();
 
 client.once("ready", async () => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
     file.endsWith(".js")
   );
-
 
   const commands = [];
 
@@ -61,7 +59,5 @@ client.once("ready", async () => {
       activities: [{ name: `${status}` }],
       status: "dnd",
     });
-
-    console.log("test");
   }, 15000);
 });

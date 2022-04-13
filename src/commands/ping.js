@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed, version: djsversion } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -9,12 +9,14 @@ module.exports = {
   async execute(interaction, client) {
     const pingembed = new MessageEmbed()
 
-      //.setColor("Red")
+      .setColor("#2e3036")
       .setTitle(":ping_pong:  Pong!")
       .addFields(
         {
           name: "**Shard 0** latency",
-          value: `> **${Date.now() - interaction.createdTimestamp}**ms`,
+          value: `> **${Math.abs(
+            Date.now() - interaction.createdTimestamp
+          )}**ms`,
           inline: false,
         },
         {

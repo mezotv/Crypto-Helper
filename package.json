@@ -10,7 +10,8 @@
   },
   "keywords": [
     "Crypto",
-    "Mezo"
+    "Mezo",
+    "Sexymezo.com"
   ],
   "author": "Mezo",
   "license": "MIT",
@@ -22,7 +23,8 @@
     "dotenv": "^16.0.0",
     "glob": "^7.2.0",
     "ms": "^2.1.3",
-    "os": "^0.1.2"
+    "os": "^0.1.2",
+    "topgg-autoposter": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

@@ -1,28 +1,28 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const fetch = require("node-fetch");
 const { result } = require("../coindata/ethereum.json");
-const { MessageEmbed, version: djsversion } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("gas")
-    .setDescription("Shows the current ethereum gas price")
+    .setDescription("Shows the current gas price for the selected coin")
     .addSubcommand((subCommand) =>
       subCommand
         .setName("ethereum")
         .setDescription("Shows the current ethereum gas price")
     ),
 
-  async execute(interaction, client) {
+  async execute(interaction) {
     switch (interaction.options.getSubcommand()) {
       case "ethereum": {
         let gasembed = new MessageEmbed()
-          // .setColor('#343434')
-          .setTitle("Ethereum gas fees")
+          .setColor("#2e3036")
+          .setTitle("Last Block: **" + result.LastBlock + "**")
           .setThumbnail(
             "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/1257px-Ethereum_logo_2014.svg.png"
           )
-          .setDescription("Last Block: **" + result.LastBlock + "**")
+          .setURL("https://etherscan.io/block/" + `${result.LastBlock}`)
+          .setDescription("Current Ethereum Gas Price:")
           .addFields(
             {
               name: "⚡Fast",

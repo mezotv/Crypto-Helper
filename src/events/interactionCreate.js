@@ -14,7 +14,6 @@ client.on("interactionCreate", async (interaction) => {
     commands.push(command.data.toJSON());
     client.commands.set(command.data.name, command);
   }
-  console.log(commandFiles);
   if (!interaction.isCommand()) return;
   const command = client.commands.get(interaction.commandName);
   if (!command) return;

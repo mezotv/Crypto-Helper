@@ -1,7 +1,5 @@
 const fetch = require("node-fetch");
 const { writeFile } = require("fs");
-let i = 0;
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function updateGas() {
   setInterval(() => {
@@ -17,7 +15,6 @@ async function updateGas() {
         let datacrypto = JSON.stringify(json, null, 2);
         writeFile("./src/coindata/ethereum.json", datacrypto, (err) => {
           if (err) throw err;
-          console.log("Data written to file");
         });
       });
   }, 15000);
