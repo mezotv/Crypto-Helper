@@ -6,9 +6,9 @@ const client = require("../index");
 const { result } = require("../coindata/ethereum.json");
 
 const { updateGas } = require("./updateGas");
-updateGas();
+
 const { autoPoster } = require("./autoPoster");
-autoPoster();
+
 
 client.once("ready", async () => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
@@ -36,6 +36,10 @@ client.once("ready", async () => {
           body: commands,
         });
         console.log("Successfully registered commands globally");
+        // Only updates Top.gg stats when bot is in production
+        autoPoster();
+        // Only updates gas price when bot is in production
+        updateGas();
       } else {
         await rest.put(
           Routes.applicationGuildCommands(CLIENT_ID, process.env.GUILD_ID),
