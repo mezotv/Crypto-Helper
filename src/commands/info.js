@@ -41,8 +41,8 @@ module.exports = {
           `**❯ Platform:** ${process.platform}`,
           `**❯ Uptime:** ${ms(os.uptime() * 1000, { long: true })}`,
           "**❯ CPU:**",
-          `> Cores: ${os.cpus().length / 2}`,
-          `> Threads: ${os.cpus().length}`,
+          `> Cores: ${os.cpus().length}`,
+          `> Threads: ${os.cpus().length * 2}`,
           `> Model: ${core.model}`,
           `> Base Speed: ${core.speed}MHz`,
         ].join("\n")
