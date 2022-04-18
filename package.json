@@ -1,7 +1,7 @@
 {
   "name": "crypto-helper-remake",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the remake of my Crypto Helper discord bot",
   "main": "src/index.js",
   "scripts": {
     "test": "nodemon .",
