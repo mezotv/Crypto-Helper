@@ -8,6 +8,7 @@ const { result } = require("../coindata/ethereum.json");
 const { updateGas } = require("./updateGas");
 
 const { autoPoster } = require("./autoPoster");
+const { voteLogs } = require("./voteLogs");
 
 
 client.once("ready", async () => {
@@ -48,6 +49,7 @@ client.once("ready", async () => {
           }
         );
         console.log("Successfully registered commands locally");
+        voteLogs()
       }
     } catch (err) {
       if (err) console.error(err);
