@@ -1,70 +1,92 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { result } = require("../coindata/ethereum.json");
+const {
+  fastestFee,
+  halfHourFee,
+  hourFee,
+} = require("../coindata/bitcoin.json");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("miner")
-    .setDescription("Lets you configure miner settings")
-    .addSubcommand((phoenix) =>
-      phoenix.setName("phoenixminer").setDescription("Setup for Phoenix miner")
+    .setDescription("Shows the current gas price for the selected coin")
+    .addSubcommand((subCommand) =>
+      subCommand
+        .setName("phoenixminer")
+        .setDescription("Setup for Phoenix miner")
     )
-    .addSubcommand((trex) =>
-      trex.setName("trexminer").setDescription("Setup for T-rex miner")
+    .addSubcommand((subCommand) =>
+      subCommand.setName("trexminer").setDescription("Setup for T-rex miner")
     )
-    .addSubcommand((nbminer) =>
-      nbminer.setName("nbminer").setDescription("Setup for NbMiner")
+    .addSubcommand((subCommand) =>
+      subCommand.setName("nbminer").setDescription("Setup for NbMiner")
     )
-    .addSubcommand((xmrig) =>
-      xmrig
-        .setName("xmrig")
-        .setDescription("Setup for XMRig")
+    .addSubcommand((subCommand) =>
+      subCommand.setName("xmrig").setDescription("Setup for XMRig")
     )
-    .addSubcommand((gminer) =>
-      gminer
-        .setName("gminer")
-        .setDescription("Setup for GMiner")
+    .addSubcommand((subCommand) =>
+      subCommand.setName("gminer").setDescription("Setup for GMiner")
+    )
+    .addSubcommand((subCommand) =>
+      subCommand.setName("salad").setDescription("Setup for Salad.io")
     ),
+
   async execute(interaction) {
     switch (interaction.options.getSubcommand()) {
-
       case "phoenixminer": {
-        const phoenixembed = new MessageEmbed()
-        .setTitle("Phoenix Miner")
-        .setDescription("PhoenixMiner is fast (arguably the fastest) Ethash (Ethereum, ETC, etc.) miner that supports both AMD and Nvidia cards (including in mixed mining rigs). It runs under Windows x64 and Linux x64")
-        
-
-        await interaction.editReply({
-          embeds: [phoenixembed],
-        });
+        var gasembed = new MessageEmbed()
+          .setColor("#5865f4")
+          .setTitle("**Phoenix Miner**")
+          .setDescription("Setup for Phoenix Miner")
+          .setTimestamp();
+        break;
       }
-     case "trexminer": {
-        const trexembed = new MessageEmbed().setTitle("trex Miner")
-
-        await interaction.editReply({
-          embeds: [trexembed],
-        });
+      case "trexminer": {
+        var gasembed = new MessageEmbed()
+          .setColor("#5865f4")
+          .setTitle("**Trex Miner**")
+          .setDescription("Setup for Trex Miner")
+          .setTimestamp();
+        break;
       }
       case "nbminer": {
-        const nbminerembed = new MessageEmbed().setTitle("nbminer")
-
-        await interaction.editReply({
-          embeds: [nbminerembed],
-        });
+        var gasembed = new MessageEmbed()
+          .setColor("#5865f4")
+          .setTitle("**NBminer**")
+          .setDescription("Setup fornbminer") 
+          .setTimestamp();
+        break;
       }
       case "xmrig": {
-        const xmrigembed = new MessageEmbed().setTitle("xmrig")
-
-        await interaction.editReply({
-          embeds: [xmrigembed],
-        });
+        var gasembed = new MessageEmbed()
+          .setColor("#5865f4")
+          .setTitle("**Xmrig Miner**")
+          .setDescription("Setup for Xmrig Miner")
+          .setTimestamp();
+        break;
       }
       case "gminer": {
-        const gminerembed = new MessageEmbed().setTitle("gminer")
-
-        await interaction.editReply({
-          embeds: [gminerembed],
-        });
+        var gasembed = new MessageEmbed()
+          .setColor("#5865f4")
+          .setTitle("**Gminer**")
+          .setDescription("Setup for Gminer")
+          .setTimestamp();
+        break;
       }
+      case "salad": {
+        var gasembed = new MessageEmbed()
+          .setColor("#5865f4")
+          .setTitle("**Salad**")
+          .setDescription("Setup for Salad")
+          .setTimestamp();
+        break;
+      }
+      default:
+        break;
     }
+    interaction.reply({
+      embeds: [gasembed],
+    });
   },
 };

@@ -48,7 +48,6 @@ client.once("ready", async () => {
             body: commands,
           }
         );
-        updateGas();
         console.log("Successfully registered commands locally");
         
       }

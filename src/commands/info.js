@@ -15,7 +15,7 @@ module.exports = {
     );
 
     const infoembed = new MessageEmbed()
-      .setColor("#2e3036")
+      .setColor("#5865f4")
       .setTitle("Bot Info")
       .setThumbnail(client.user.displayAvatarURL())
       .addField(

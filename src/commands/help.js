@@ -26,6 +26,11 @@ module.exports = {
           name: "**/ping**",
           value: "> Shows the api and shard latency",
           inline: false,
+        },
+        {
+          name: "**/vote**",
+          value: "> Shows the link to vote for the bot",
+          inline: false,
         }
       )
       .setTimestamp();

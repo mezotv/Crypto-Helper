@@ -9,7 +9,7 @@ module.exports = {
   async execute(interaction, client) {
     const pingembed = new MessageEmbed()
 
-      .setColor("#2e3036")
+      .setColor("#5865f4")
       .setTitle(":ping_pong:  Pong!")
       .addFields(
         {

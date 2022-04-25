@@ -22,7 +22,7 @@ module.exports = {
     switch (interaction.options.getSubcommand()) {
       case "ethereum": {
         var gasembed = new MessageEmbed()
-          .setColor("#2e3036")
+          .setColor("#5865f4")
           .setTitle("Last Block: **" + result.LastBlock + "**")
           .setThumbnail(
             "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/1257px-Ethereum_logo_2014.svg.png"
@@ -51,7 +51,7 @@ module.exports = {
         }
         case "bitcoin": {
           var gasembed = new MessageEmbed()
-            .setColor("#2e3036")
+            .setColor("#5865f4")
             .setTitle("Bitcoin Fees")
             .setThumbnail(
               "https://imgs.search.brave.com/w_GvHFdrOmNalH99UCRvAnyRauMdsfrriLg__MAL8Gw/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9sb2dv/c3BuZy5vcmcvZG93/bmxvYWQvYml0Y29p/bi9sb2dvLWJpdGNv/aW4tNDA5Ni5wbmc"
