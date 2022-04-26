@@ -54,7 +54,7 @@ module.exports = {
         var gasembed = new MessageEmbed()
           .setColor("#5865f4")
           .setTitle("**NBminer**")
-          .setDescription("Setup fornbminer") 
+          .setDescription("Setup for nbminer") 
           .setTimestamp();
         break;
       }
