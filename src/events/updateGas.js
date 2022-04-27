@@ -13,14 +13,18 @@ async function updateGas() {
         })
           .then((res) => res.json())
           .then((json) => {
+          try {
             let datacrypto = JSON.stringify(json, null, 2);
            // console.log("Ethereum Fees Updated");
             writeFile("./src/coindata/ethereum.json", datacrypto, (err) => {
               if (err) console.log(err);
             });
+            } catch (err) {
+
+ console.log(err)
+
+}
           });
-      } catch (error) {
-        console.log(error);
       }
 
       const data2 = `https://bitcoinfees.earn.com/api/v1/fees/recommended`;
