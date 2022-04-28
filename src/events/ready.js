@@ -3,14 +3,12 @@ const { Routes } = require("discord-api-types/v9");
 const { readdirSync } = require("fs");
 require("dotenv").config();
 const client = require("../index");
-const { result } = require("../coindata/ethereum.json");
-
-const { updateGas } = require("./updateGas");
-
+const fetch = require("node-fetch");
+//const { updateGas } = require("./updateGas");
 const { autoPoster } = require("./autoPoster");
 
 
-client.once("ready", async () => {
+client.on("ready", async () => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
     file.endsWith(".js")
   );
@@ -39,7 +37,7 @@ client.once("ready", async () => {
         // Only updates Top.gg stats when bot is in production
         autoPoster();
         // Only updates gas price when bot is in production
-        updateGas();
+        //updateGas();
 
       } else {
         await rest.put(
@@ -48,6 +46,7 @@ client.once("ready", async () => {
             body: commands,
           }
         );
+        //updateGas();
         console.log("Successfully registered commands locally");
         
       }
@@ -57,13 +56,18 @@ client.once("ready", async () => {
   })();
 
   setInterval(() => {
+    (async () => {
+    const data = await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`).then((res) =>
+    res.json()
+  );
     let status = [
-      `⚡${result.FastGasPrice} |🚶${result.ProposeGasPrice} |🐢${result.SafeGasPrice} |`,
+      `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
     ];
-
     client.user.setPresence({
       activities: [{ name: `${status}` }],
       status: "dnd",
     });
+
+  })();
   }, 15000);
 });

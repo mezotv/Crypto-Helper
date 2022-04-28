@@ -1,7 +1,7 @@
 /* Requiring the nedded libarys*/
 const { Collection, Client } = require("discord.js");
+
 require("dotenv").config();
-const discordModals = require('discord-modals')
 
 /* It's creating a new client with the needed intents. */
 const client = new Client({
@@ -21,10 +21,8 @@ const client = new Client({
 });
 module.exports = client;
 
-discordModals(client); 
-
 /* Basically loading the even and command loader ironic right */
-require("./util/eventLoader" || "./util/commandLoader")(client);
+require("./util/eventLoader")(client);
 
 /* It's creating a new collection for the aliases. */
 client.aliases = new Collection();

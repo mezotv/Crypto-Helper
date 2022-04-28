@@ -9,12 +9,17 @@ module.exports = {
   async execute(interaction) {
     const pingembed = new MessageEmbed()
 
-      .setColor("#2e3036")
+      .setColor("#5865f4")
       .setTitle(":newspaper: Commands!")
       .addFields(
         {
-          name: "**/gas coin**",
+          name: "**/gas [selected coin]**",
           value: "> Shows the current transaction fee of the selected coin",
+          inline: false,
+        },
+        {
+          name: "**/miner [selected miner]**",
+          value: "> Shows a setup for the selected miner",
           inline: false,
         },
         {

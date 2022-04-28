@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { result } = require("../coindata/ethereum.json");
-const { fastestFee, halfHourFee, hourFee} = require("../coindata/bitcoin.json");
 const { MessageEmbed } = require("discord.js");
+const fetch = require("node-fetch");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -21,28 +20,31 @@ module.exports = {
   async execute(interaction) {
     switch (interaction.options.getSubcommand()) {
       case "ethereum": {
+        const data = await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`).then((res) =>
+        res.json()
+      );
         var gasembed = new MessageEmbed()
           .setColor("#5865f4")
-          .setTitle("Last Block: **" + result.LastBlock + "**")
+          .setTitle("Last Block: **" + data.result.LastBlock + "**")
           .setThumbnail(
             "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/1257px-Ethereum_logo_2014.svg.png"
           )
-          .setURL("https://etherscan.io/block/" + `${result.LastBlock}`)
+          .setURL("https://etherscan.io/block/" + `${data.result.LastBlock}`)
           .setDescription("Current Ethereum transaction Price:")
           .addFields(
             {
               name: "⚡Fast",
-              value: `> **${result.FastGasPrice}**gwei`,
+              value: `> **${data.result.FastGasPrice}**gwei`,
               inline: true,
             },
             {
               name: "🚶Normal",
-              value: `> **${result.ProposeGasPrice}**gwei`,
+              value: `> **${data.result.ProposeGasPrice}**gwei`,
               inline: true,
             },
             {
               name: "🐢Slow",
-              value: `> **${result.SafeGasPrice}**gwei`,
+              value: `> **${data.result.SafeGasPrice}**gwei`,
               inline: true,
             }
           )
@@ -50,6 +52,7 @@ module.exports = {
         break;
         }
         case "bitcoin": {
+          const { fastestFee, halfHourFee, hourFee} = require("../coindata/bitcoin.json");
           var gasembed = new MessageEmbed()
             .setColor("#5865f4")
             .setTitle("Bitcoin Fees")
