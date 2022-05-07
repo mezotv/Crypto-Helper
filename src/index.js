@@ -25,7 +25,6 @@ module.exports = client;
 require("./util/eventLoader")(client);
 
 /* It's creating a new collection for the aliases. */
-client.aliases = new Collection();
 client.commands = new Collection();
 
 /* Logging the bot in. */

@@ -25,6 +25,7 @@ module.exports = {
           inline: false,
         }
       )
+      
       .setTimestamp();
 
     await interaction.reply({
