@@ -27,7 +27,7 @@ module.exports = {
           .setColor("#5865f4")
           .setTitle("Last Block: **" + data.result.LastBlock + "**")
           .setThumbnail(
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/1257px-Ethereum_logo_2014.svg.png"
+            "https://cdn.discordapp.com/attachments/926292185748496446/972791200308416532/eth.png"
           )
           .setURL("https://etherscan.io/block/" + `${data.result.LastBlock}`)
           .setDescription("Current Ethereum transaction Price:")
@@ -45,6 +45,11 @@ module.exports = {
             {
               name: "🐢Slow",
               value: `> **${data.result.SafeGasPrice}**gwei`,
+              inline: true,
+            },
+            {
+              name: "Suggested BaseFee",
+              value: `> **${data.result.suggestBaseFee}**gwei`,
               inline: true,
             }
           )

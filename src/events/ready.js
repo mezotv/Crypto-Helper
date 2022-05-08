@@ -6,6 +6,7 @@ const client = require("../index");
 const fetch = require("node-fetch");
 //const { updateGas } = require("./updateGas");
 const { autoPoster } = require("./autoPoster");
+const { InfinityPoster } = require("./infinityAutoPost");
 
 
 client.on("ready", async () => {
@@ -36,6 +37,8 @@ client.on("ready", async () => {
         console.log("Successfully registered commands globally");
         // Only updates Top.gg stats when bot is in production
         autoPoster();
+        // Only updates Infinity bot list stats when bot is in production
+        InfinityPoster();
         // Only updates gas price when bot is in production
         //updateGas();
 
