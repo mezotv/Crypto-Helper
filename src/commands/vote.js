@@ -15,6 +15,7 @@ module.exports = {
           "to vote for me!"
       )
       .setURL("https://top.gg/bot/747050613656911892/vote")
+      .setFooter("Crypto Helper made by Mezo#0001")
       .setThumbnail(client.user.displayAvatarURL());
 
     await interaction.reply({

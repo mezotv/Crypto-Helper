@@ -23,6 +23,11 @@ module.exports = {
           inline: false,
         },
         {
+          name: "**/lhr**",
+          value: "> Shows info about Nvidias LHR Graphics Cards",
+          inline: false,
+        },
+        {
           name: "**/info**",
           value: "> Shows some info about the bot",
           inline: false,
@@ -38,6 +43,7 @@ module.exports = {
           inline: false,
         }
       )
+      .setFooter("Crypto Helper made by Mezo#0001")
       .setTimestamp();
 
     await interaction.reply({
