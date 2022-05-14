@@ -2,13 +2,17 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, version: djsversion } = require("discord.js");
 const { version } = require("../../package.json");
 const os = require("os");
-const ms = require("ms");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("info")
     .setDescription("Shows all info about the bot and its developer"),
   async execute(interaction, client) {
+    let days = Math.floor(client.uptime / 86400000);
+    let hours = Math.floor(client.uptime / 3600000) % 24;
+    let minutes = Math.floor(client.uptime / 60000) % 60;
+    let seconds = Math.floor(client.uptime / 1000) % 60;
+
     const core = os.cpus()[0];
     const createdAt = new Date(client.user.createdTimestamp).toLocaleString(
       "en-GB"
@@ -39,7 +43,7 @@ module.exports = {
         "System",
         [
           `**❯ Platform:** ${process.platform}`,
-          `**❯ Uptime:** ${ms(os.uptime() * 1000, { long: true })}`,
+          `**❯ Uptime:** ${`${days}d ${hours}h ${minutes}m ${seconds}s`}`,
           "**❯ CPU:**",
           `> Cores: ${os.cpus().length}`,
           `> Threads: ${os.cpus().length * 2}`,
