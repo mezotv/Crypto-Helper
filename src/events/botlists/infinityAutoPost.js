@@ -1,6 +1,6 @@
 const { InfinityAutoPoster } = require("ibl-autopost");
 require("dotenv").config();
-const client = require("../index");
+const client = require("../../index");
 
 
 async function InfinityPoster () {

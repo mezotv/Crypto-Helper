@@ -24,7 +24,7 @@ module.exports = {
         ].join("\n")
       )
       .setImage("https://cdn.discordapp.com/attachments/926292185748496446/974383813218152468/lhr.png")
-      .setFooter("Guide by Plerion#6666")
+      .setFooter({ text: 'Guide by Plerion#6666' })
       .setTimestamp();
 
     await interaction.reply({

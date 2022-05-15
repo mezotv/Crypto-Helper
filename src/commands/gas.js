@@ -59,7 +59,7 @@ module.exports = {
             }
           )
           .setTimestamp()
-          .setFooter("Crypto Helper made by Mezo#0001")
+          .setFooter({ text: 'Crypto Helper made by Mezo#0001' });
         break;
         }
         case "bitcoin": {
@@ -91,7 +91,7 @@ module.exports = {
               }
             )
             .setTimestamp()
-            .setFooter("Crypto Helper made by Mezo#0001");
+            .setFooter({ text: 'Crypto Helper made by Mezo#0001' });
           }
           default:
             break; 

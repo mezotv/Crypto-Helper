@@ -27,7 +27,7 @@ module.exports = {
       )
       
       .setTimestamp()
-      .setFooter("Crypto Helper made by Mezo#0001");
+      .setFooter({ text: 'Crypto Helper made by Mezo#0001' });
 
     await interaction.reply({
       embeds: [pingembed],

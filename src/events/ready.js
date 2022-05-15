@@ -5,8 +5,9 @@ require("dotenv").config();
 const client = require("../index");
 const fetch = require("node-fetch");
 //const { updateGas } = require("./updateGas");
-const { autoPoster } = require("./autoPoster");
-const { InfinityPoster } = require("./infinityAutoPost");
+const { topggPoster } = require("./botlists/topggAutoPost");
+const { InfinityPoster } = require("./botlists/infinityAutoPost");
+const { voidPoster } = require("./botlists/voidAutoPost");
 
 
 client.on("ready", async () => {
@@ -36,11 +37,11 @@ client.on("ready", async () => {
         });
         console.log("Successfully registered commands globally");
         // Only updates Top.gg stats when bot is in production
-        autoPoster();
+        topggPoster();
         // Only updates Infinity bot list stats when bot is in production
         InfinityPoster();
-        // Only updates gas price when bot is in production
-        //updateGas();
+        // Only updates Void bot list stats when bot is in production
+        voidPoster()
 
       } else {
         await rest.put(
@@ -50,6 +51,7 @@ client.on("ready", async () => {
           }
         );
         //updateGas();
+
         console.log("Successfully registered commands locally");
         
       }
