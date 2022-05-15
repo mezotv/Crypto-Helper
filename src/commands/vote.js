@@ -13,13 +13,31 @@ module.exports = {
         iconURL: client.user.avatarURL(),
       })
       .setColor("#5865f4")
-      .setTitle("Vote for **Crypto Helper**")
-      .setDescription(
-        "Click" +
-          "[ here ](https://top.gg/bot/747050613656911892/vote)" +
-          "to vote for me!"
+      .setTitle(
+        "Voting helps **Crypto Helper** gain more users! So make sure to vote every day!"
       )
-      .setURL("https://top.gg/bot/747050613656911892/vote")
+      .addFields(
+        {
+          name: "VoidBots",
+          value: `> [ Vote for me on **VoidBots** ](https://voidbots.net/bot/747050613656911892/vote)`,
+          inline: false,
+        },
+        {
+          name: "Botlist.me",
+          value: `> [ Vote for me on **Botlist.me** ](https://botlist.me/bots/747050613656911892/vote)`,
+          inline: false,
+        },
+        {
+          name: "Infinity Bot List",
+          value: `> [ Vote for me on **Infinity Bot Lists** ](https://infinitybots.gg/bots/747050613656911892/vote)`,
+          inline: false,
+        },
+        {
+          name: "Top.gg",
+          value: `> [ Vote for me on **Top.gg** ](https://top.gg/bot/747050613656911892/vote)`,
+          inline: false,
+        }
+      )
       .setThumbnail(client.user.displayAvatarURL())
       .setFooter({ text: "Crypto Helper made by Mezo#0001" });
 
