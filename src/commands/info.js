@@ -19,7 +19,10 @@ module.exports = {
     );
 
     const infoembed = new MessageEmbed()
-    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+      .setAuthor({
+        name: `${client.user.username}`,
+        iconURL: client.user.avatarURL(),
+      })
       .setColor("#5865f4")
       .setTitle("Bot Info")
       .setThumbnail(client.user.displayAvatarURL())
@@ -52,7 +55,7 @@ module.exports = {
           `> Base Speed: ${core.speed}MHz`,
         ].join("\n")
       )
-      .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
+      .setFooter({ text: "Crypto Helper made by Mezo#0001" })
       .setTimestamp();
 
     await interaction.reply({ embeds: [infoembed] });

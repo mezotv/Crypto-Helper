@@ -2,11 +2,16 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-  data: new SlashCommandBuilder().setName("vote").setDescription("Vote for me!"),
+  data: new SlashCommandBuilder()
+    .setName("vote")
+    .setDescription("Vote for me!"),
 
   async execute(interaction, client) {
     const votemebed = new MessageEmbed()
-    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+      .setAuthor({
+        name: `${client.user.username}`,
+        iconURL: client.user.avatarURL(),
+      })
       .setColor("#5865f4")
       .setTitle("Vote for **Crypto Helper**")
       .setDescription(
@@ -16,7 +21,7 @@ module.exports = {
       )
       .setURL("https://top.gg/bot/747050613656911892/vote")
       .setThumbnail(client.user.displayAvatarURL())
-      .setFooter({ text: 'Crypto Helper made by Mezo#0001' });
+      .setFooter({ text: "Crypto Helper made by Mezo#0001" });
 
     await interaction.reply({
       embeds: [votemebed],

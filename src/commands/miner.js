@@ -17,8 +17,10 @@ module.exports = {
       subCommand.setName("nbminer").setDescription("Setup for NbMiner")
     )
     .addSubcommand((subCommand) =>
-    subCommand.setName("teamredminer").setDescription("Setup for Team Red Miner")
-  )
+      subCommand
+        .setName("teamredminer")
+        .setDescription("Setup for Team Red Miner")
+    )
     .addSubcommand((subCommand) =>
       subCommand.setName("xmrig").setDescription("Setup for XMRig")
     )
@@ -30,7 +32,10 @@ module.exports = {
     switch (interaction.options.getSubcommand()) {
       case "phoenixminer": {
         var gasembed = new MessageEmbed()
-        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+          .setAuthor({
+            name: `${client.user.username}`,
+            iconURL: client.user.avatarURL(),
+          })
           .setColor("#212020")
           .setTitle("**Phoenix Miner**")
           .setURL("https://phoenixminer.org/")
@@ -59,14 +64,19 @@ module.exports = {
               "**🥳Done!** Run that bat file and enjoy!",
             ].join("\n")
           )
-          .setThumbnail("https://cdn.discordapp.com/attachments/926292185748496446/972791200308416532/eth.png")
-          .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
+          .setThumbnail(
+            "https://cdn.discordapp.com/attachments/926292185748496446/972791200308416532/eth.png"
+          )
+          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
           .setTimestamp();
         break;
       }
       case "trexminer": {
         var gasembed = new MessageEmbed()
-        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+          .setAuthor({
+            name: `${client.user.username}`,
+            iconURL: client.user.avatarURL(),
+          })
           .setColor("#6a4e38")
           .setTitle("**T-Rex Miner**")
           .setURL("https://github.com/trexminer/T-Rex/releases/tag/0.25.15")
@@ -98,13 +108,16 @@ module.exports = {
             ].join("\n")
           )
           .setThumbnail("https://trex-miner.com/img/t-rex.png")
-          .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
+          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
           .setTimestamp();
         break;
       }
       case "nbminer": {
         var gasembed = new MessageEmbed()
-        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+          .setAuthor({
+            name: `${client.user.username}`,
+            iconURL: client.user.avatarURL(),
+          })
           .setColor("#fefffe")
           .setTitle("**NBMiner**")
           .setURL("https://github.com/NebuTech/NBMiner/releases")
@@ -134,51 +147,61 @@ module.exports = {
               "**🥳Done!** Run that bat file and enjoy!",
             ].join("\n")
           )
-          .setThumbnail("https://github.com/NebuTech/NBMiner/blob/master/logo.png?raw=true")
-          .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
+          .setThumbnail(
+            "https://github.com/NebuTech/NBMiner/blob/master/logo.png?raw=true"
+          )
+          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
           .setTimestamp();
         break;
       }
       case "teamredminer": {
         var gasembed = new MessageEmbed()
-        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
-        .setColor("#e40607")
-        .setTitle("**Team Red Miner**")
-        .setURL("https://github.com/todxx/teamredminer/releases/tag/v0.9.4.2")
-        .addFields(
-          {
-            name: "**Info**",
-            value: `> This is an optimized miner for AMD GPUs and Xilinx FPGAs created by todxx and kerney666.`,
-            inline: false,
-          },
-          {
-            name: "**DevFee**",
-            value:
-              "> Depending on the algorythm, the developer fee is between 0.75% and 3%.",
-            inline: false,
-          }
-        )
-        .addField(
-          "Mining Setup",
-          [
-            "**Note!** You can get the pool address from the ites like **https://ethermine.org/**.",
-            "**1.** Install **T-Rex** from the url in the title. ",
-            "**2.** **Open** or **create** any bat file and paste the folowing code:",
-            "```teamredminer.exe -a <algo> -o <pool> -u <YourWalletAddress>.<WorkerName> -p x```",
-            "**3.** Change **<algo>** to your desired algorithm. ",
-            "**4.** Change **<pool>** to your desired pool.",
-            "**5.** Change **<YourWalletAddress>** to your wallet address and **<WorkerName>** to your desired worker name.",
-            "**🥳Done!** Run that bat file and enjoy!",
-          ].join("\n")
-        )
-        .setThumbnail("https://www.teamredminer.com/assets/img/TRMrw_transp.png")
-        .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
-        .setTimestamp();
-      break;
+          .setAuthor({
+            name: `${client.user.username}`,
+            iconURL: client.user.avatarURL(),
+          })
+          .setColor("#e40607")
+          .setTitle("**Team Red Miner**")
+          .setURL("https://github.com/todxx/teamredminer/releases/tag/v0.9.4.2")
+          .addFields(
+            {
+              name: "**Info**",
+              value: `> This is an optimized miner for AMD GPUs and Xilinx FPGAs created by todxx and kerney666.`,
+              inline: false,
+            },
+            {
+              name: "**DevFee**",
+              value:
+                "> Depending on the algorythm, the developer fee is between 0.75% and 3%.",
+              inline: false,
+            }
+          )
+          .addField(
+            "Mining Setup",
+            [
+              "**Note!** You can get the pool address from the ites like **https://ethermine.org/**.",
+              "**1.** Install **T-Rex** from the url in the title. ",
+              "**2.** **Open** or **create** any bat file and paste the folowing code:",
+              "```teamredminer.exe -a <algo> -o <pool> -u <YourWalletAddress>.<WorkerName> -p x```",
+              "**3.** Change **<algo>** to your desired algorithm. ",
+              "**4.** Change **<pool>** to your desired pool.",
+              "**5.** Change **<YourWalletAddress>** to your wallet address and **<WorkerName>** to your desired worker name.",
+              "**🥳Done!** Run that bat file and enjoy!",
+            ].join("\n")
+          )
+          .setThumbnail(
+            "https://www.teamredminer.com/assets/img/TRMrw_transp.png"
+          )
+          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+          .setTimestamp();
+        break;
       }
       case "xmrig": {
         var gasembed = new MessageEmbed()
-        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+          .setAuthor({
+            name: `${client.user.username}`,
+            iconURL: client.user.avatarURL(),
+          })
           .setColor("#ec641c")
           .setTitle("**XMRig**")
           .setURL("https://xmrig.com/download")
@@ -209,46 +232,50 @@ module.exports = {
             ].join("\n")
           )
           .setThumbnail("https://avatars.githubusercontent.com/u/27528955?v=4")
-          .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
+          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
           .setTimestamp();
         break;
       }
       case "salad": {
         var gasembed = new MessageEmbed()
-        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
-        .setColor("#b1d234")
-        .setTitle("**Salad**")
-        .setURL("https://salad.com/download")
-        .addFields(
-          {
-            name: "**Info**",
-            value: `> Salad is the easiest and most trusted way to computeshare.`,
-            inline: false,
-          },
-          {
-            name: "**DevFee**",
-            value:
-              "> Salad doesnt add any devfee other than the pool fee. Some items on the store got fees on them though.",
-            inline: false,
-          }
-        )
-        .addField(
-          "Mining Setup",
-          [
-
-            "**1.** Install **Salad** from the url in the title.",
-            "**2.** Enter your email and the code sent to it",
-            "**3.** You will get asked for a referal code. Make sure to enter **helper** to support our project. Once entered press the checkmark button next to it.",
-            "**4.** Whitelist salad on your anti virus like shown here **https://support.salad.com/category/30-anti-virus**",
-            "**5.** Press the start button and wait till it says **chopping**",
-            "**Optional** Go to **https://app.salad.io/earn/summary** to keep track of your income.",
-            "**🥳Done!** Now just wait for your money to come in!",
-          ].join("\n")
-        )
-        .setThumbnail("https://cdn.discordapp.com/attachments/697180189729226814/734781267509248111/favicon.512x512.png")
-        .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
-        .setTimestamp();
-      break;
+          .setAuthor({
+            name: `${client.user.username}`,
+            iconURL: client.user.avatarURL(),
+          })
+          .setColor("#b1d234")
+          .setTitle("**Salad**")
+          .setURL("https://salad.com/download")
+          .addFields(
+            {
+              name: "**Info**",
+              value: `> Salad is the easiest and most trusted way to computeshare.`,
+              inline: false,
+            },
+            {
+              name: "**DevFee**",
+              value:
+                "> Salad doesnt add any devfee other than the pool fee. Some items on the store got fees on them though.",
+              inline: false,
+            }
+          )
+          .addField(
+            "Mining Setup",
+            [
+              "**1.** Install **Salad** from the url in the title.",
+              "**2.** Enter your email and the code sent to it",
+              "**3.** You will get asked for a referal code. Make sure to enter **helper** to support our project. Once entered press the checkmark button next to it.",
+              "**4.** Whitelist salad on your anti virus like shown here **https://support.salad.com/category/30-anti-virus**",
+              "**5.** Press the start button and wait till it says **chopping**",
+              "**Optional** Go to **https://app.salad.io/earn/summary** to keep track of your income.",
+              "**🥳Done!** Now just wait for your money to come in!",
+            ].join("\n")
+          )
+          .setThumbnail(
+            "https://cdn.discordapp.com/attachments/697180189729226814/734781267509248111/favicon.512x512.png"
+          )
+          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+          .setTimestamp();
+        break;
       }
       default:
         break;

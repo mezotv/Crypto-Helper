@@ -8,12 +8,15 @@ module.exports = {
 
   async execute(interaction, client) {
     const pingembed = new MessageEmbed()
-    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+      .setAuthor({
+        name: `${client.user.username}`,
+        iconURL: client.user.avatarURL(),
+      })
       .setColor("#5865f4")
       .setTitle(":ping_pong:  Pong!")
       .addFields(
         {
-          name: "**Shard 0** latency",
+          name: "**Shard 1** latency",
           value: `> **${Math.abs(
             Date.now() - interaction.createdTimestamp
           )}**ms`,
@@ -25,9 +28,9 @@ module.exports = {
           inline: false,
         }
       )
-      
+
       .setTimestamp()
-      .setFooter({ text: 'Crypto Helper made by Mezo#0001' });
+      .setFooter({ text: "Crypto Helper made by Mezo#0001" });
 
     await interaction.reply({
       embeds: [pingembed],

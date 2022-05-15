@@ -8,7 +8,10 @@ module.exports = {
 
   async execute(interaction, client) {
     const pingembed = new MessageEmbed()
-    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
+      .setAuthor({
+        name: `${client.user.username}`,
+        iconURL: client.user.avatarURL(),
+      })
       .setColor("#5865f4")
       .setTitle(":newspaper: Commands!")
       .addFields(
@@ -43,7 +46,7 @@ module.exports = {
           inline: false,
         }
       )
-      .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
+      .setFooter({ text: "Crypto Helper made by Mezo#0001" })
       .setTimestamp();
 
     await interaction.reply({
