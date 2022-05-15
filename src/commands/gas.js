@@ -17,13 +17,18 @@ module.exports = {
       .setDescription("Shows the current bitcoin gas price")
   ),
 
-  async execute(interaction) {
+  async execute(interaction, client) {
     switch (interaction.options.getSubcommand()) {
       case "ethereum": {
-        const data = await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`).then((res) =>
-        res.json()
-      );
+        let data;
+
+        await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`)
+        .then((res) => res.json())
+        .then((res) => {
+              data = res
+        });
         var gasembed = new MessageEmbed()
+        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
           .setColor("#5865f4")
           .setTitle("Last Block: **" + data.result.LastBlock + "**")
           .setThumbnail(
@@ -60,6 +65,7 @@ module.exports = {
         case "bitcoin": {
           const { fastestFee, halfHourFee, hourFee} = require("../coindata/bitcoin.json");
           var gasembed = new MessageEmbed()
+          .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
             .setColor("#5865f4")
             .setTitle("Bitcoin Fees")
             .setThumbnail(

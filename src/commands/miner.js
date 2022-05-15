@@ -26,10 +26,11 @@ module.exports = {
       subCommand.setName("salad").setDescription("Setup for Salad.io")
     ),
 
-  async execute(interaction) {
+  async execute(interaction, client) {
     switch (interaction.options.getSubcommand()) {
       case "phoenixminer": {
         var gasembed = new MessageEmbed()
+        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
           .setColor("#212020")
           .setTitle("**Phoenix Miner**")
           .setURL("https://phoenixminer.org/")
@@ -65,6 +66,7 @@ module.exports = {
       }
       case "trexminer": {
         var gasembed = new MessageEmbed()
+        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
           .setColor("#6a4e38")
           .setTitle("**T-Rex Miner**")
           .setURL("https://github.com/trexminer/T-Rex/releases/tag/0.25.15")
@@ -102,6 +104,7 @@ module.exports = {
       }
       case "nbminer": {
         var gasembed = new MessageEmbed()
+        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
           .setColor("#fefffe")
           .setTitle("**NBMiner**")
           .setURL("https://github.com/NebuTech/NBMiner/releases")
@@ -138,6 +141,7 @@ module.exports = {
       }
       case "teamredminer": {
         var gasembed = new MessageEmbed()
+        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
         .setColor("#e40607")
         .setTitle("**Team Red Miner**")
         .setURL("https://github.com/todxx/teamredminer/releases/tag/v0.9.4.2")
@@ -174,6 +178,7 @@ module.exports = {
       }
       case "xmrig": {
         var gasembed = new MessageEmbed()
+        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
           .setColor("#ec641c")
           .setTitle("**XMRig**")
           .setURL("https://xmrig.com/download")
@@ -210,6 +215,7 @@ module.exports = {
       }
       case "salad": {
         var gasembed = new MessageEmbed()
+        .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
         .setColor("#b1d234")
         .setTitle("**Salad**")
         .setURL("https://salad.com/download")

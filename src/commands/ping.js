@@ -8,7 +8,7 @@ module.exports = {
 
   async execute(interaction, client) {
     const pingembed = new MessageEmbed()
-
+    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
       .setColor("#5865f4")
       .setTitle(":ping_pong:  Pong!")
       .addFields(

@@ -6,9 +6,9 @@ module.exports = {
     .setName("lhr")
     .setDescription("Gives info about Nvidias LHR Graphics Cards"),
 
-  async execute(interaction) {
+  async execute(interaction, client) {
     const lhrembed = new MessageEmbed()
-
+    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
       .setColor("#77b800")
       .setTitle("What even is LHR")
       .setDescription("LHR stands for **L**ite **H**ash **R**ate")

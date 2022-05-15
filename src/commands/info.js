@@ -19,6 +19,7 @@ module.exports = {
     );
 
     const infoembed = new MessageEmbed()
+    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
       .setColor("#5865f4")
       .setTitle("Bot Info")
       .setThumbnail(client.user.displayAvatarURL())

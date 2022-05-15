@@ -6,7 +6,7 @@ module.exports = {
 
   async execute(interaction, client) {
     const votemebed = new MessageEmbed()
-
+    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
       .setColor("#5865f4")
       .setTitle("Vote for **Crypto Helper**")
       .setDescription(

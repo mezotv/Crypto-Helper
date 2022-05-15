@@ -6,9 +6,9 @@ module.exports = {
     .setName("help")
     .setDescription("Get a list of all commands supported by the bot"),
 
-  async execute(interaction) {
+  async execute(interaction, client) {
     const pingembed = new MessageEmbed()
-
+    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
       .setColor("#5865f4")
       .setTitle(":newspaper: Commands!")
       .addFields(

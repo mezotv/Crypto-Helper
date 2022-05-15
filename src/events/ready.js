@@ -60,9 +60,13 @@ client.on("ready", async () => {
 
   setInterval(() => {
     (async () => {
-    const data = await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`).then((res) =>
-    res.json()
-  );
+      let data;
+
+      await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`)
+      .then((res) => res.json())
+      .then((res) => {
+            data = res
+      });
     let status = [
       `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
     ];
