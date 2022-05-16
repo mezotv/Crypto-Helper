@@ -19,23 +19,33 @@ module.exports = {
       .addFields(
         {
           name: "VoidBots",
-          value: `> [ Vote for me on **VoidBots** ](https://voidbots.net/bot/747050613656911892/vote)`,
-          inline: false,
+          value: `> [ Click to vote ](https://voidbots.net/bot/747050613656911892/vote)`,
+          inline: true,
         },
         {
           name: "Botlist.me",
-          value: `> [ Vote for me on **Botlist.me** ](https://botlist.me/bots/747050613656911892/vote)`,
-          inline: false,
+          value: `> [ Click to vote  ](https://botlist.me/bots/747050613656911892/vote)`,
+          inline: true,
+        },
+        {
+          name: "Radar Bot Directory",
+          value: `> [ Click to vote  ](https://radarbotdirectory.xyz/bot/747050613656911892/vote)`,
+          inline: true,
+        },
+        {
+          name: "Flow Bots",
+          value: `> [ Click to vote  ](https://www.flowbots.net/bot/747050613656911892/vote)`,
+          inline: true,
         },
         {
           name: "Infinity Bot List",
-          value: `> [ Vote for me on **Infinity Bot Lists** ](https://infinitybots.gg/bots/747050613656911892/vote)`,
-          inline: false,
+          value: `> [ Click to vote  ](https://infinitybots.gg/bots/747050613656911892/vote)`,
+          inline: true,
         },
         {
           name: "Top.gg",
-          value: `> [ Vote for me on **Top.gg** ](https://top.gg/bot/747050613656911892/vote)`,
-          inline: false,
+          value: `> [ Click to vote  ](https://top.gg/bot/747050613656911892/vote)`,
+          inline: true,
         }
       )
       .setThumbnail(client.user.displayAvatarURL())
