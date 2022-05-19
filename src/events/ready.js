@@ -4,10 +4,8 @@ const { readdirSync } = require("fs");
 require("dotenv").config();
 const client = require("../index");
 const fetch = require("node-fetch");
-//const { updateGas } = require("./updateGas");
-const { topggPoster } = require("./botlists/topggAutoPost");
-const { InfinityPoster } = require("./botlists/infinityAutoPost");
-const { voidPoster } = require("./botlists/voidAutoPost");
+
+const { postStats } = require("./botlists/botlists")
 
 
 client.on("ready", async () => {
@@ -36,12 +34,7 @@ client.on("ready", async () => {
           body: commands,
         });
         console.log("Successfully registered commands globally");
-        // Only updates Top.gg stats when bot is in production
-        topggPoster();
-        // Only updates Infinity bot list stats when bot is in production
-        InfinityPoster();
-        // Only updates Void bot list stats when bot is in production
-        voidPoster()
+        postStats()
 
       } else {
         await rest.put(
@@ -50,9 +43,9 @@ client.on("ready", async () => {
             body: commands,
           }
         );
-        //updateGas();
 
         console.log("Successfully registered commands locally");
+        postStats()
         
       }
     } catch (err) {
