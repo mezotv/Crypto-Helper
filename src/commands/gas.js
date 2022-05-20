@@ -29,12 +29,43 @@ module.exports = {
           .then((res) => {
             data = res;
           });
+
+        if (data.result.suggestBaseFee >= 90) {
+          var embedcolor = "#dd2f45";
+        } else if (data.result.suggestBaseFee >= 45) {
+          var embedcolor = "#ffac32";
+        } else {
+          var embedcolor = "#79b359";
+        }
+        if (data.result.FastGasPrice >= 100) {
+          var fastemoji = "🔴";
+        } else if (data.result.FastGasPrice >= 50) {
+          var fastemoji = "🟠";
+        } else {
+          var fastemoji = "🟢";
+        }
+        // Normal
+        if (data.result.ProposeGasPrice >= 90) {
+          var normalemoji = "🔴";
+        } else if (data.result.ProposeGasPrice >= 45) {
+          var normalemoji = "🟠";
+        } else {
+          var normalemoji = "🟢";
+        }
+        // Slow
+        if (data.result.SafeGasPrice >= 85) {
+          var slowemoji = "🔴";
+        } else if (data.result.SafeGasPrice >= 40) {
+          var slowemoji = "🟠";
+        } else {
+          var slowemoji = "🟢";
+        }
         var gasembed = new MessageEmbed()
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
           })
-          .setColor("#5865f4")
+          .setColor(embedcolor)
           .setTitle("Last Block: **" + data.result.LastBlock + "**")
           .setThumbnail(
             "https://cdn.discordapp.com/attachments/926292185748496446/972791200308416532/eth.png"
@@ -44,17 +75,17 @@ module.exports = {
           .addFields(
             {
               name: "⚡Fast",
-              value: `> **${data.result.FastGasPrice}**gwei`,
+              value: `> ${fastemoji} **${data.result.FastGasPrice}**gwei`,
               inline: true,
             },
             {
               name: "🚶Normal",
-              value: `> **${data.result.ProposeGasPrice}**gwei`,
+              value: `> ${normalemoji} **${data.result.ProposeGasPrice}**gwei`,
               inline: true,
             },
             {
               name: "🐢Slow",
-              value: `> **${data.result.SafeGasPrice}**gwei`,
+              value: `> ${slowemoji} **${data.result.SafeGasPrice}**gwei`,
               inline: true,
             },
             {

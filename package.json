@@ -1,6 +1,6 @@
 {
   "name": "crypto-helper-remake",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "This bot is tracking the current Ethereum and Bitcoin transaction fee's.",
   "main": "src/index.js",
   "scripts": {
