@@ -45,7 +45,6 @@ client.on("ready", async () => {
         );
 
         console.log("Successfully registered commands locally");
-        postStats()
         
       }
     } catch (err) {

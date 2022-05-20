@@ -18,32 +18,32 @@ module.exports = {
         {
           name: "**/gas [selected coin]**",
           value: "> Shows the current transaction fee of the selected coin",
-          inline: false,
+          inline: true,
         },
         {
           name: "**/miner [selected miner]**",
           value: "> Shows a setup for the selected miner",
-          inline: false,
+          inline: true,
         },
         {
           name: "**/lhr**",
           value: "> Shows info about Nvidias LHR Graphics Cards",
-          inline: false,
+          inline: true,
         },
         {
           name: "**/info**",
           value: "> Shows some info about the bot",
-          inline: false,
+          inline: true,
         },
         {
           name: "**/ping**",
           value: "> Shows the api and shard latency",
-          inline: false,
+          inline: true,
         },
         {
           name: "**/vote**",
           value: "> Shows the link to vote for the bot",
-          inline: false,
+          inline: true,
         }
       )
       .setFooter({ text: "Crypto Helper made by Mezo#0001" })
