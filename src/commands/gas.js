@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,12 +22,19 @@ module.exports = {
       case "ethereum": {
         let data;
 
-        await fetch(
-          `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`
-        )
-          .then((res) => res.json())
-          .then((res) => {
-            data = res;
+        await axios({
+          method: "post",
+          url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+          .then(function (res) {
+            data = res.data;
+          })
+          .catch(function (err) {
+            console.log(err);
           });
 
         if (data.result.suggestBaseFee >= 90) {

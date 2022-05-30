@@ -3,10 +3,10 @@ const { Routes } = require("discord-api-types/v9");
 const { readdirSync } = require("fs");
 require("dotenv").config();
 const client = require("../index");
-const fetch = require("node-fetch");
+const { ChalkAdvanced } = require("chalk-advanced");
+const axios = require("axios");
 
-const { postStats } = require("./botlists/botlists")
-
+const { postStats } = require("./botlists/botlists");
 
 client.on("ready", async () => {
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
@@ -33,9 +33,14 @@ client.on("ready", async () => {
         await rest.put(Routes.applicationCommands(CLIENT_ID), {
           body: commands,
         });
-        console.log("Successfully registered commands globally");
-        postStats()
-
+        console.log(
+          `${ChalkAdvanced.white("Crypto Helper")} ${ChalkAdvanced.gray(
+            ">"
+          )} ${ChalkAdvanced.green(
+            "Successfully registered commands globally"
+          )}`
+        );
+        postStats();
       } else {
         await rest.put(
           Routes.applicationGuildCommands(CLIENT_ID, process.env.GUILD_ID),
@@ -44,8 +49,11 @@ client.on("ready", async () => {
           }
         );
 
-        console.log("Successfully registered commands locally");
-        
+        console.log(
+          `${ChalkAdvanced.white("Crypto Helper")} ${ChalkAdvanced.gray(
+            ">"
+          )} ${ChalkAdvanced.green("Successfully registered commands locally")}`
+        );
       }
     } catch (err) {
       if (err) console.error(err);
@@ -56,19 +64,25 @@ client.on("ready", async () => {
     (async () => {
       let data;
 
-      await fetch(`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`)
-      .then((res) => res.json())
-      .then((res) => {
-            data = res
-      });
-    let status = [
-      `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
-    ];
-    client.user.setPresence({
-      activities: [{ name: `${status}` }],
-      status: "dnd",
-    });
-
-  })();
+      await axios({
+        method: "post",
+        url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+        .then(function (res) {
+          data = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+      let status = [
+        `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
+      ];
+      client.user.setStatus("dnd");
+      client.user.setActivity(`${status}`, { type: "WATCHING" });
+    })();
   }, 15000);
 });
