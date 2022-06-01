@@ -81,7 +81,15 @@ client.on("ready", async () => {
       let status = [
         `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
       ];
-      client.user.setStatus("dnd");
+
+      if (data.result.suggestBaseFee >= 90) {
+        client.user.setStatus("dnd");
+      } else if (data.result.suggestBaseFee >= 45) {
+        client.user.setStatus("idle");
+      } else {
+        client.user.setStatus("online");
+      }
+
       client.user.setActivity(`${status}`, { type: "WATCHING" });
     })();
   }, 15000);
