@@ -1,18 +1,16 @@
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
-const { readdirSync } = require("fs");
-require("dotenv").config();
-const client = require("../index");
-const { ChalkAdvanced } = require("chalk-advanced");
-const axios = require("axios");
-const { FetchWebsite } = require("../util/fetchWebsite");
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+const { readdirSync } = require('fs');
+require('dotenv').config();
+const { ChalkAdvanced } = require('chalk-advanced');
+const axios = require('axios');
+const client = require('../index');
+const { FetchWebsite } = require('../util/fetchWebsite');
 
-const { postStats } = require("./botlists/botlists");
+const { postStats } = require('./botlists/botlists');
 
-client.on("ready", async () => {
-  const commandFiles = readdirSync("./src/commands/").filter((file) =>
-    file.endsWith(".js")
-  );
+client.on('ready', async () => {
+  const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
 
   const commands = [];
 
@@ -25,21 +23,21 @@ client.on("ready", async () => {
   const CLIENT_ID = client.user.id;
 
   const rest = new REST({
-    version: "10",
+    version: '10',
   }).setToken(process.env.TOKEN);
 
   (async () => {
     try {
-      if (process.env.STATUS === "PRODUCTION") {
+      if (process.env.STATUS === 'PRODUCTION') {
         await rest.put(Routes.applicationCommands(CLIENT_ID), {
           body: commands,
         });
         console.log(
-          `${ChalkAdvanced.white("Crypto Helper")} ${ChalkAdvanced.gray(
-            ">"
+          `${ChalkAdvanced.white('Crypto Helper')} ${ChalkAdvanced.gray(
+            '>',
           )} ${ChalkAdvanced.green(
-            "Successfully registered commands globally"
-          )}`
+            'Successfully registered commands globally',
+          )}`,
         );
         FetchWebsite(client);
         postStats();
@@ -48,13 +46,13 @@ client.on("ready", async () => {
           Routes.applicationGuildCommands(CLIENT_ID, process.env.GUILD_ID),
           {
             body: commands,
-          }
+          },
         );
 
         console.log(
-          `${ChalkAdvanced.white("Crypto Helper")} ${ChalkAdvanced.gray(
-            ">"
-          )} ${ChalkAdvanced.green("Successfully registered commands locally")}`
+          `${ChalkAdvanced.white('Crypto Helper')} ${ChalkAdvanced.gray(
+            '>',
+          )} ${ChalkAdvanced.green('Successfully registered commands locally')}`,
         );
       }
     } catch (err) {
@@ -67,17 +65,17 @@ client.on("ready", async () => {
       let data;
       try {
         await axios({
-          method: "post",
+          method: 'post',
           url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
         })
-          .then(function (res) {
+          .then((res) => {
             data = res.data;
           })
-          .catch(function (err) {
+          .catch((err) => {
             console.log(err);
           });
       } catch (err) {
@@ -88,14 +86,14 @@ client.on("ready", async () => {
       ];
 
       if (data.result.suggestBaseFee >= 90) {
-        client.user.setStatus("dnd");
+        client.user.setStatus('dnd');
       } else if (data.result.suggestBaseFee >= 45) {
-        client.user.setStatus("idle");
+        client.user.setStatus('idle');
       } else {
-        client.user.setStatus("online");
+        client.user.setStatus('online');
       }
 
-      client.user.setActivity(`${status}`, { type: "WATCHING" });
+      client.user.setActivity(`${status}`, { type: 'WATCHING' });
     })();
   }, 15000);
 });

@@ -1,10 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed, version: djsversion } = require("discord.js");
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed, version: djsversion } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("help")
-    .setDescription("Get a list of all commands supported by the bot"),
+    .setName('help')
+    .setDescription('Get a list of all commands supported by the bot'),
 
   async execute(interaction, client) {
     const pingembed = new MessageEmbed()
@@ -12,41 +12,41 @@ module.exports = {
         name: `${client.user.username}`,
         iconURL: client.user.avatarURL(),
       })
-      .setColor("#5865f4")
-      .setTitle(":newspaper: Commands!")
+      .setColor('#5865f4')
+      .setTitle(':newspaper: Commands!')
       .addFields(
         {
-          name: "**/gas [selected coin]**",
-          value: "> Shows the current transaction fee of the selected coin",
+          name: '**/gas [selected coin]**',
+          value: '> Shows the current transaction fee of the selected coin',
           inline: true,
         },
         {
-          name: "**/miner [selected miner]**",
-          value: "> Shows a setup for the selected miner",
+          name: '**/miner [selected miner]**',
+          value: '> Shows a setup for the selected miner',
           inline: true,
         },
         {
-          name: "**/lhr**",
-          value: "> Shows info about Nvidias LHR Graphics Cards",
+          name: '**/lhr**',
+          value: '> Shows info about Nvidias LHR Graphics Cards',
           inline: true,
         },
         {
-          name: "**/info**",
-          value: "> Shows some info about the bot",
+          name: '**/info**',
+          value: '> Shows some info about the bot',
           inline: true,
         },
         {
-          name: "**/ping**",
-          value: "> Shows the api and shard latency",
+          name: '**/ping**',
+          value: '> Shows the api and shard latency',
           inline: true,
         },
         {
-          name: "**/vote**",
-          value: "> Shows the link to vote for the bot",
+          name: '**/vote**',
+          value: '> Shows the link to vote for the bot',
           inline: true,
-        }
+        },
       )
-       .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
+      .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
       .setTimestamp();
 
     await interaction.reply({
