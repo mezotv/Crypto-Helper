@@ -49,7 +49,7 @@ module.exports = {
         }
       )
       .setThumbnail(client.user.displayAvatarURL())
-      .setFooter({ text: "Crypto Helper made by Mezo#0001" });
+       .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" });
 
     await interaction.reply({
       embeds: [votemebed],

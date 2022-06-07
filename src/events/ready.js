@@ -5,6 +5,7 @@ require("dotenv").config();
 const client = require("../index");
 const { ChalkAdvanced } = require("chalk-advanced");
 const axios = require("axios");
+const { FetchWebsite } = require("../util/fetchWebsite");
 
 const { postStats } = require("./botlists/botlists");
 
@@ -40,6 +41,7 @@ client.on("ready", async () => {
             "Successfully registered commands globally"
           )}`
         );
+        FetchWebsite(client);
         postStats();
       } else {
         await rest.put(
@@ -63,21 +65,24 @@ client.on("ready", async () => {
   setInterval(() => {
     (async () => {
       let data;
-
-      await axios({
-        method: "post",
-        url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then(function (res) {
-          data = res.data;
+      try {
+        await axios({
+          method: "post",
+          url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
         })
-        .catch(function (err) {
-          console.log(err);
-        });
+          .then(function (res) {
+            data = res.data;
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+      } catch (err) {
+        return;
+      }
       let status = [
         `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
       ];

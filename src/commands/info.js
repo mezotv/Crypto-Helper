@@ -14,30 +14,23 @@ module.exports = {
     let seconds = Math.floor(client.uptime / 1000) % 60;
 
     const core = os.cpus()[0];
-    const createdAt = new Date(client.user.createdTimestamp).toLocaleString(
-      "en-GB"
-    );
 
     const infoembed = new MessageEmbed()
-      .setAuthor({
-        name: `${client.user.username}`,
-        iconURL: client.user.avatarURL(),
-      })
+    .setAuthor({ name: `${client.user.username}`, iconURL: client.user.avatarURL() })
       .setColor("#5865f4")
       .setTitle("Bot Info")
-      .setThumbnail(client.user.displayAvatarURL())
       .addField(
         "General",
         [
           `**❯ Developer:** [Mezo](https://sexymezo.com)`,
-          `**❯ Client:** [Crypto Helper Invite](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands)`,
+          `**❯ Client:** [Crypto Helper Invite](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=274878294080&scope=bot%20applications.commands)`,
           `**❯ Commands:** ${client.commands.size}`,
           `**❯ Servers:** ${client.guilds.cache.size.toLocaleString()} `,
           `**❯ Users:** ${client.guilds.cache
             .reduce((a, b) => a + b.memberCount, 0)
             .toLocaleString()}`,
           `**❯ Channels:** ${client.channels.cache.size.toLocaleString()}`,
-          `**❯ Creation Date:** ${createdAt}`,
+          `**❯ Creation Date:** <t:1598181145:R>`,
           `**❯ Bot Version:** v${version}`,
           `**❯ Node.js:** ${process.version}`,
           `**❯ Discord.js:** v${djsversion}`,
@@ -55,7 +48,7 @@ module.exports = {
           `> Base Speed: ${core.speed}MHz`,
         ].join("\n")
       )
-      .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+      .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
       .setTimestamp();
 
     await interaction.reply({ embeds: [infoembed] });

@@ -46,7 +46,7 @@ module.exports = {
           inline: true,
         }
       )
-      .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+       .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
       .setTimestamp();
 
     await interaction.reply({

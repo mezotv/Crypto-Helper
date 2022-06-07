@@ -21,21 +21,24 @@ module.exports = {
     switch (interaction.options.getSubcommand()) {
       case "ethereum": {
         let data;
-
-        await axios({
-          method: "post",
-          url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        })
-          .then(function (res) {
-            data = res.data;
+        try {
+          await axios({
+            method: "post",
+            url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
           })
-          .catch(function (err) {
-            console.log(err);
-          });
+            .then(function (res) {
+              data = res.data;
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+        } catch (err) {
+          return;
+        }
 
         if (data.result.suggestBaseFee >= 90) {
           var embedcolor = "#dd2f45";
@@ -102,7 +105,9 @@ module.exports = {
             }
           )
           .setTimestamp()
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" });
+          .setFooter({
+            text: "Crypto Helper made by Developer Dungeon Studios",
+          });
         break;
       }
       case "bitcoin": {
@@ -141,7 +146,9 @@ module.exports = {
             }
           )
           .setTimestamp()
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" });
+          .setFooter({
+            text: "Crypto Helper made by Developer Dungeon Studios",
+          });
       }
       default:
         break;

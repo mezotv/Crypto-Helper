@@ -67,7 +67,7 @@ module.exports = {
           .setThumbnail(
             "https://cdn.discordapp.com/attachments/926292185748496446/972791200308416532/eth.png"
           )
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+           .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
           .setTimestamp();
         break;
       }
@@ -108,7 +108,7 @@ module.exports = {
             ].join("\n")
           )
           .setThumbnail("https://trex-miner.com/img/t-rex.png")
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+           .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
           .setTimestamp();
         break;
       }
@@ -150,7 +150,7 @@ module.exports = {
           .setThumbnail(
             "https://github.com/NebuTech/NBMiner/blob/master/logo.png?raw=true"
           )
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+           .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
           .setTimestamp();
         break;
       }
@@ -192,7 +192,7 @@ module.exports = {
           .setThumbnail(
             "https://www.teamredminer.com/assets/img/TRMrw_transp.png"
           )
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+           .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
           .setTimestamp();
         break;
       }
@@ -232,7 +232,7 @@ module.exports = {
             ].join("\n")
           )
           .setThumbnail("https://avatars.githubusercontent.com/u/27528955?v=4")
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+           .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
           .setTimestamp();
         break;
       }
@@ -273,7 +273,8 @@ module.exports = {
           .setThumbnail(
             "https://cdn.discordapp.com/attachments/697180189729226814/734781267509248111/favicon.512x512.png"
           )
-          .setFooter({ text: "Crypto Helper made by Mezo#0001" })
+           .setFooter({ text: "Crypto Helper made by Developer Dungeon Studios" })
+
           .setTimestamp();
         break;
       }
