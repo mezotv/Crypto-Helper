@@ -5,7 +5,7 @@ require('dotenv').config();
 const { ChalkAdvanced } = require('chalk-advanced');
 const axios = require('axios');
 const client = require('../index');
-const { FetchWebsite } = require('../util/fetchWebsite');
+const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api')
 
 const { postStats } = require('./botlists/botlists');
 
@@ -39,7 +39,6 @@ client.on('ready', async () => {
             'Successfully registered commands globally',
           )}`,
         );
-        FetchWebsite(client);
         postStats();
       } else {
         await rest.put(
@@ -59,6 +58,9 @@ client.on('ready', async () => {
       if (err) console.error(err);
     }
   })();
+
+  fetchDungeonSingle("cryptohelper", process.env.DEVELOPERSDUNGEON, client)
+  fetchDungeon("cryptohelper", process.env.DEVELOPERSDUNGEON, client)
 
   setInterval(() => {
     (async () => {
