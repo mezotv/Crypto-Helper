@@ -5,22 +5,18 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('miner')
     .setDescription('Shows a setup for the selected miner')
-    .addSubcommand((subCommand) => subCommand
-      .setName('phoenixminer')
-      .setDescription('Setup for Phoenix miner'))
+    .addSubcommand((subCommand) => subCommand.setName('phoenixminer').setDescription('Setup for Phoenix miner'))
     .addSubcommand((subCommand) => subCommand.setName('trexminer').setDescription('Setup for T-rex Miner'))
     .addSubcommand((subCommand) => subCommand.setName('nbminer').setDescription('Setup for NbMiner'))
-    .addSubcommand((subCommand) => subCommand
-      .setName('teamredminer')
-      .setDescription('Setup for Team Red Miner'))
+    .addSubcommand((subCommand) => subCommand.setName('teamredminer').setDescription('Setup for Team Red Miner'))
     .addSubcommand((subCommand) => subCommand.setName('xmrig').setDescription('Setup for XMRig'))
     .addSubcommand((subCommand) => subCommand.setName('salad').setDescription('Setup for Salad.io')),
 
   async execute(interaction, client) {
-    let gasembed;
+    let gasembed = new MessageEmbed();
     switch (interaction.options.getSubcommand()) {
       case 'phoenixminer': {
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -61,7 +57,7 @@ module.exports = {
         break;
       }
       case 'trexminer': {
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -102,7 +98,7 @@ module.exports = {
         break;
       }
       case 'nbminer': {
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -144,7 +140,7 @@ module.exports = {
         break;
       }
       case 'teamredminer': {
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -186,7 +182,7 @@ module.exports = {
         break;
       }
       case 'xmrig': {
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -226,7 +222,7 @@ module.exports = {
         break;
       }
       case 'salad': {
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -267,6 +263,7 @@ module.exports = {
           .setTimestamp();
         break;
       }
+
       default:
         break;
     }

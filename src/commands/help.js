@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('help')
+    .setName('help2')
     .setDescription('Get a list of all commands supported by the bot'),
 
   async execute(interaction, client) {

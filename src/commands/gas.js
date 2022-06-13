@@ -14,7 +14,7 @@ module.exports = {
       .setDescription('Shows the current bitcoin gas price')),
 
   async execute(interaction, client) {
-    let gasembed;
+    let gasembed = new MessageEmbed();
     switch (interaction.options.getSubcommand()) {
       case 'ethereum': {
         let data;
@@ -74,7 +74,7 @@ module.exports = {
         } else {
           slowemoji = '🟢';
         }
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -120,7 +120,7 @@ module.exports = {
           halfHourFee,
           hourFee,
         } = require('../coindata/bitcoin.json');
-        gasembed = new MessageEmbed()
+        gasembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
