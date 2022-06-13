@@ -1,10 +1,13 @@
-const { glob } = require('glob');
-const { promisify } = require('util');
-
-const globPromise = promisify(glob);
+const { readdir } = require('fs');
 
 module.exports = async (client) => {
-  const eventfiles = await globPromise(`${__dirname}/../events/*.js`);
-  eventfiles.map((value) => require(value));
-  console.log(`Loaded ${eventfiles.length} events`);
+  readdir('./src/events/', (err, files) => {
+    if (err) return console.error(err);
+
+    files.forEach((file) => {
+      const event = require(`../events/${file}`);
+      const eventName = file.split('.')[0];
+      client.on(eventName, event.bind(client));
+    });
+  });
 };

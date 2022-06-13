@@ -2,11 +2,11 @@ const axios = require('axios');
 const { InfinityAutoPoster } = require('ibl-autopost');
 require('dotenv').config();
 const { AutoPoster } = require('topgg-autoposter');
-const client = require('../../index');
+const { ChalkAdvanced } = require('chalk-advanced');
 
-const ap = AutoPoster(`${process.env.AUTO_POSTER}`, client);
+module.exports = function postStats(client) {
+  AutoPoster(`${process.env.AUTO_POSTER}`, client);
 
-async function voidPoster() {
   axios({
     method: 'post',
     url: 'https://api.voidbots.net/bot/stats/747050613656911892',
@@ -17,14 +17,12 @@ async function voidPoster() {
     },
     data: {
       server_count: client.guilds.cache.size,
-      shard_count: 10,
+      shard_count: 1,
     },
   })
-    .then((res) => {})
-    .catch((err) => {});
-}
+    .then(() => {})
+    .catch(() => {});
 
-async function botlistmePoster() {
   axios({
     method: 'post',
     url: 'https://api.botlist.me/api/v1/bots/747050613656911892/stats',
@@ -38,12 +36,10 @@ async function botlistmePoster() {
       shard_count: 1,
     },
   })
-    .then((res) => {})
-    .catch((err) => {
-      console.log(err);
+    .then(() => {})
+    .catch(() => {
     });
-}
-async function radarPoster() {
+
   axios({
     method: 'post',
     url: 'https://radarbotdirectory.xyz/api/bot/747050613656911892/stats',
@@ -57,33 +53,16 @@ async function radarPoster() {
       shards: 1,
     },
   })
-    .then((res) => {})
-    .catch((err) => {});
-}
+    .then(() => {})
+    .catch(() => {});
 
-async function topggPoster() {
-  ap.on('posted', () => {
-    console.log('Stats pushed to https://top.gg/bot/747050613656911892');
-  });
-}
+  InfinityAutoPoster(process.env.INFINITYTOKEN, client);
 
-async function InfinityPoster() {
-  const poster = InfinityAutoPoster(process.env.INFINITYTOKEN, client); // your discord.js or eris client
-
-  // Optional Logger
-  poster.on('posted', (stats) => {
-    console.log(
-      `Posted stats to the Infinity Bot List API | ${stats.servers} servers`,
-    );
-  });
-}
-
-async function postStats() {
-  voidPoster();
-  topggPoster();
-  InfinityPoster();
-  radarPoster();
-  botlistmePoster();
-}
-
-module.exports = { postStats };
+  console.log(
+    `${ChalkAdvanced.white('Botlists')} ${ChalkAdvanced.gray(
+      '>',
+    )} ${ChalkAdvanced.green(
+      'Pushing stats to Botlists',
+    )}`,
+  );
+};

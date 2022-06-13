@@ -1,15 +1,12 @@
 const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const { Routes } = require('discord-api-types/v10');
 const { readdirSync } = require('fs');
 require('dotenv').config();
 const { ChalkAdvanced } = require('chalk-advanced');
 const axios = require('axios');
-const client = require('../index');
-const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api')
+const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
-const { postStats } = require('./botlists/botlists');
-
-client.on('ready', async () => {
+module.exports = async (client) => {
   const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
 
   const commands = [];
@@ -39,7 +36,6 @@ client.on('ready', async () => {
             'Successfully registered commands globally',
           )}`,
         );
-        postStats();
       } else {
         await rest.put(
           Routes.applicationGuildCommands(CLIENT_ID, process.env.GUILD_ID),
@@ -59,8 +55,8 @@ client.on('ready', async () => {
     }
   })();
 
-  fetchDungeonSingle("cryptohelper", process.env.DEVELOPERSDUNGEON, client)
-  fetchDungeon("cryptohelper", process.env.DEVELOPERSDUNGEON, client)
+  fetchDungeonSingle('cryptohelper', process.env.DEVELOPERSDUNGEON, client);
+  fetchDungeon('cryptohelper', process.env.DEVELOPERSDUNGEON, client);
 
   setInterval(() => {
     (async () => {
@@ -83,7 +79,7 @@ client.on('ready', async () => {
       } catch (err) {
         return;
       }
-      let status = [
+      const status = [
         `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
       ];
 
@@ -98,4 +94,4 @@ client.on('ready', async () => {
       client.user.setActivity(`${status}`, { type: 'WATCHING' });
     })();
   }, 15000);
-});
+};
