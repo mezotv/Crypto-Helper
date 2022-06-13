@@ -1,5 +1,5 @@
 const { readdirSync } = require('fs');
-const guildcreate = require('../db/Models/guildModel');
+const guildcreate = require('../db/Models/guildModel.ts');
 
 module.exports = (interaction) => {
   if (!interaction.guild) {
