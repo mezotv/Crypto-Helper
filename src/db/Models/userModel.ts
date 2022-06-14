@@ -19,9 +19,8 @@ const userProfile = new Schema(
       type: Number,
       default: 0,
     },
-    voted: {
-      type: Boolean,
-      default: false,
+    nextVote: {
+      type: Number,
     },
     userHash: {
       type: String,

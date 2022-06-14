@@ -28,16 +28,16 @@ module.exports = async function postStats(client) {
           if (result) {
             await userModel.findOneAndUpdate({
               lastVote: (Date.now() / 1000) | 0,
-              voted: true,
               totalVotes: result.totalVotes + 1,
+              nextVote: (Date.now() / 1000) + 43200  | 0,
               bankMoney: result.bankMoney + 1000,
             });
           } else {
             await userModel.create({
               userID: vote.user,
               lastVote: (Date.now() / 1000) | 0,
-              voted: true,
               totalVotes: 1,
+              nextVote: (Date.now() / 1000) + 43200  | 0,
               bankMoney: 2000,
             });
           }
@@ -48,6 +48,11 @@ module.exports = async function postStats(client) {
               {
                 name: 'Last vote:',
                 value: `<t:${(Date.now() / 1000) | 0}:R>`,
+                inline: false,
+              },
+              {
+                name: 'Next vote:',
+                value: `<t:${(Date.now() / 1000) + 43200  | 0 }:R>`,
                 inline: false,
               },
               {
@@ -72,7 +77,6 @@ module.exports = async function postStats(client) {
               },
             );
         });
-
       const voteButton = new MessageActionRow().addComponents(
         new MessageButton()
           .setLabel('Vote Again!')
