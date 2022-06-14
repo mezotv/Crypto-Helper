@@ -15,7 +15,7 @@ module.exports = async function postStats(client) {
     '/dblwebhook',
     webhook.listener(async (vote) => {
       const voteUser = await client.users.fetch(vote.user);
-      const staffDm = await client.users.fetch('980199990746034236');
+      const staffDm = await client.users.fetch('347077478726238228');
 
       let voteEmbed = new MessageEmbed();
       let staffEmbed = new MessageEmbed();
