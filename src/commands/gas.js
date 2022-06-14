@@ -130,17 +130,17 @@ module.exports = {
           .addFields(
             {
               name: '⚡Fast',
-              value: `> **102**satoshis/byte`,
+              value: '> **102**satoshis/byte',
               inline: true,
             },
             {
               name: '🕧 Half hour',
-              value: `> **102**satoshis/byte`,
+              value: '> **102**satoshis/byte',
               inline: true,
             },
             {
               name: '🕛 Hour',
-              value: `> **88**satoshis/byte`,
+              value: '> **88**satoshis/byte',
               inline: true,
             },
           )
