@@ -6,8 +6,7 @@
   "scripts": {
     "test": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
-    "lint": "eslint . --fix",
-    "sharding": "node ShardingManager.js"
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -32,7 +31,7 @@
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.0",
     "dungeon-api": "^1.0.2",
-    "express": "^4.17.3",
+    "express": "^4.18.1",
     "glob": "^7.2.0",
     "hashify-matchify": "^1.0.0",
     "ibl-autopost": "^1.1.5",

@@ -1,5 +1,4 @@
 const axios = require('axios');
-const { InfinityAutoPoster } = require('ibl-autopost');
 require('dotenv').config();
 const { AutoPoster } = require('topgg-autoposter');
 const { ChalkAdvanced } = require('chalk-advanced');
@@ -56,7 +55,6 @@ module.exports = function postStats(client) {
     .then(() => {})
     .catch(() => {});
 
-  InfinityAutoPoster(process.env.INFINITYTOKEN, client);
 
   console.log(
     `${ChalkAdvanced.white('Botlists')} ${ChalkAdvanced.gray(

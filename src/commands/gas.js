@@ -115,11 +115,6 @@ module.exports = {
         break;
       }
       case 'bitcoin': {
-        const {
-          fastestFee,
-          halfHourFee,
-          hourFee,
-        } = require('../coindata/bitcoin.json');
         gasembed
           .setAuthor({
             name: `${client.user.username}`,
@@ -135,17 +130,17 @@ module.exports = {
           .addFields(
             {
               name: '⚡Fast',
-              value: `> **${fastestFee}**satoshis/byte`,
+              value: `> **102**satoshis/byte`,
               inline: true,
             },
             {
               name: '🕧 Half hour',
-              value: `> **${halfHourFee}**satoshis/byte`,
+              value: `> **102**satoshis/byte`,
               inline: true,
             },
             {
               name: '🕛 Hour',
-              value: `> **${hourFee}**satoshis/byte`,
+              value: `> **88**satoshis/byte`,
               inline: true,
             },
           )

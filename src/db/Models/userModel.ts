@@ -23,6 +23,19 @@ const userProfile = new Schema(
       type: Boolean,
       default: false,
     },
+    userHash: {
+      type: String,
+      required: true,
+      default: 'Not hashed yet',
+    },
+    lastVote: {
+      type: Number,
+    },
+    totalVotes: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   { timestamps: true },
 );
