@@ -17,8 +17,6 @@ module.exports = async (client) => {
     client.commands.set(command.data.name, command);
   }
 
-  const CLIENT_ID = client.user.id;
-
   const rest = new REST({
     version: '10',
   }).setToken(process.env.TOKEN);
@@ -26,7 +24,7 @@ module.exports = async (client) => {
   (async () => {
     try {
       if (process.env.STATUS === 'PRODUCTION') {
-        await rest.put(Routes.applicationCommands(CLIENT_ID), {
+        await rest.put(Routes.applicationCommands(client.user.id), {
           body: commands,
         });
         console.log(
@@ -38,7 +36,7 @@ module.exports = async (client) => {
         );
       } else {
         await rest.put(
-          Routes.applicationGuildCommands(CLIENT_ID, process.env.GUILD_ID),
+          Routes.applicationGuildCommands(client.user.id, process.env.GUILD_ID),
           {
             body: commands,
           },

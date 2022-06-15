@@ -29,23 +29,13 @@ module.exports = {
             ephemeral: true,
           });
         }
-        balembed
-          .setColor('#5865f4')
-          .setTitle('Crypto Wallet')
-          .addFields(
-            {
-              name: `**${interaction.options.getUser('user').username}'s balance**`,
-              value: `> Bank: $${result.bankMoney} \n > Wallet: $${result.walletMoney}`,
-              inline: false,
-            },
-          );
         await userModel
           .findOne({ userID: interaction.user.id })
           .then(async (result) => {
             balembed
               .setColor('#5865f4')
               .setTitle('Crypto Wallet')
-              .addFields(
+              .addField(
                 {
                   name: `**${interaction.user.username}'s balance**`,
                   value: `> Bank: $${result.bankMoney} \n > Wallet: $${result.walletMoney}`,

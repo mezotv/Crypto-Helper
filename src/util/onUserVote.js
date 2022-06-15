@@ -29,7 +29,8 @@ module.exports = async function postStats(client) {
             await userModel.findOneAndUpdate({
               lastVote: (Date.now() / 1000) | 0,
               totalVotes: result.totalVotes + 1,
-              nextVote: (Date.now() / 1000) + 43200  | 0,
+              nextVote: (Date.now() / 1000) + 43200 | 0,
+              voted: true,
               bankMoney: result.bankMoney + 1000,
             });
           } else {
@@ -37,7 +38,8 @@ module.exports = async function postStats(client) {
               userID: vote.user,
               lastVote: (Date.now() / 1000) | 0,
               totalVotes: 1,
-              nextVote: (Date.now() / 1000) + 43200  | 0,
+              nextVote: (Date.now() / 1000) + 43200 | 0,
+              voted: true,
               bankMoney: 2000,
             });
           }
@@ -52,7 +54,7 @@ module.exports = async function postStats(client) {
               },
               {
                 name: 'Next vote:',
-                value: `<t:${(Date.now() / 1000) + 43200  | 0 }:R>`,
+                value: `<t:${(Date.now() / 1000) + 43200 | 0}:R>`,
                 inline: false,
               },
               {

@@ -1,4 +1,3 @@
-const { readdirSync } = require('fs');
 const { hashify } = require('hashify-matchify');
 const guildcreate = require('../db/Models/guildModel.ts');
 const userModel = require('../db/Models/userModel.ts');
@@ -26,16 +25,21 @@ module.exports = async (interaction) => {
             userID: interaction.user.id,
             userHash: hash,
           });
-        } else {}
+        } else {
+          console.log(result.lastVote - result.nextVote);
+          if (result.lastVote - result.nextVote >= 43200) {
+            await userModel.findOneAndUpdate({
+              voted: false,
+            });
+          } else {
+            console.log('User has not voted in the last 12 hours');
+            await userModel.findOneAndUpdate({
+              voted: false,
 
-        const { client } = interaction;
-        const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
-        const commands = [];
-        for (const file of commandFiles) {
-          const command = require(`../commands/${file}`);
-          commands.push(command.data.toJSON());
-          client.commands.set(command.data.name, command);
+            });
+          }
         }
+        const { client } = interaction;
         if (!interaction.isCommand()) return;
         const command = client.commands.get(interaction.commandName);
         if (!command) return;

@@ -55,7 +55,6 @@ module.exports = function postStats(client) {
     .then(() => {})
     .catch(() => {});
 
-
   console.log(
     `${ChalkAdvanced.white('Botlists')} ${ChalkAdvanced.gray(
       '>',

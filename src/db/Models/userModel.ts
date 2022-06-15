@@ -22,6 +22,10 @@ const userProfile = new Schema(
     nextVote: {
       type: Number,
     },
+    voted: {
+      type: Boolean,
+      default: false,
+    },
     userHash: {
       type: String,
       required: true,

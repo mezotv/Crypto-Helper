@@ -4,8 +4,8 @@
   "description": "This bot is tracking the current Ethereum and Bitcoin transaction fee's.",
   "main": "src/index.ts",
   "scripts": {
-    "test": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
+    "test": "nodemon src/index.ts",
     "lint": "eslint . --fix"
   },
   "repository": {
