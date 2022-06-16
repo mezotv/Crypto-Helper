@@ -26,13 +26,11 @@ module.exports = async (interaction) => {
             userHash: hash,
           });
         } else {
-          console.log(result.lastVote - result.nextVote);
           if (result.lastVote - result.nextVote >= 43200) {
             await userModel.findOneAndUpdate({
               voted: false,
             });
           } else {
-            console.log('User has not voted in the last 12 hours');
             await userModel.findOneAndUpdate({
               voted: false,
 

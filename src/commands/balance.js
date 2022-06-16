@@ -13,7 +13,36 @@ module.exports = {
 
   async execute(interaction) {
     let balembed = new MessageEmbed();
-    await userModel
+    if (interaction.options.getUser("user")) {
+      await userschema
+        .findOne({ userId: interaction.options.getUser("user").id })
+        .then(async (result) => {
+          if (!result) {
+            if (interaction.options.getUser("user").id == interaction.user.id) {
+              const errorembed = new MessageEmbed()
+                .setColor("RED")
+                .setTitle("Wopps")
+                .setDescription(
+                  "You dont see to have a crypto wallet yet so we just made one for you!"
+                );
+              return await interaction.reply({
+                embeds: [errorembed],
+                ephemeral: true,
+              });
+            };
+            } else {
+              const errorembed = new MessageEmbed()
+                .setColor("RED")
+                .setTitle("Wopps")
+                .setDescription("This user doesn't have a crypto wallet yet.");
+
+              return await interaction.reply({
+                embeds: [errorembed],
+                ephemeral: true,
+              });
+            };
+          } else {
+     await userModel
       .findOne({ userId: interaction.user.id })
       .then(async (result) => {
         if (!result) {
@@ -34,19 +63,16 @@ module.exports = {
           .then(async (result) => {
             balembed
               .setColor('#5865f4')
-              .setTitle('Crypto Wallet')
-              .addField(
-                {
-                  name: `**${interaction.user.username}'s balance**`,
-                  value: `> Bank: $${result.bankMoney} \n > Wallet: $${result.walletMoney}`,
-                  inline: false,
-                },
-              );
+              .setTitle(`${interaction.user.username}'s Crypto Wallet`)
+              .addField('Physical Wallet', `**\` ${result.walletMoney}  \`** <:bitcoin:976394052708749342>`, true)
+              .addField('Digital Wallet', `**\` ${result.bankMoney}  \`** <:bitcoin:976394052708749342>`, true);
 
             await interaction.reply({
               embeds: [balembed],
+
             });
           });
       });
+    }
   },
 };
