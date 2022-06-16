@@ -22,7 +22,7 @@ module.exports = async function postStats(client) {
 
       userModel
         .findOne({
-          guildID: vote.user,
+          userID: vote.user,
         })
         .then(async (result) => {
           if (result) {
@@ -64,7 +64,7 @@ module.exports = async function postStats(client) {
               },
               {
                 name: 'Voting benefits:',
-                value: '> + $1000',
+                value: '> + $1000\n + 1.2% Earning boost',
                 inline: false,
               },
             );

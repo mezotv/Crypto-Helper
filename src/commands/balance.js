@@ -13,66 +13,72 @@ module.exports = {
 
   async execute(interaction) {
     let balembed = new MessageEmbed();
-    if (interaction.options.getUser("user")) {
-      await userschema
-        .findOne({ userId: interaction.options.getUser("user").id })
+    if (interaction.options.getUser('user')) {
+      await userModel
+        .findOne({
+          userId: interaction.options.getUser('user').id,
+        })
         .then(async (result) => {
           if (!result) {
-            if (interaction.options.getUser("user").id == interaction.user.id) {
+            if (interaction.options.getUser('user').id == interaction.user.id) {
               const errorembed = new MessageEmbed()
-                .setColor("RED")
-                .setTitle("Wopps")
+                .setColor('RED')
+                .setTitle('Wopps')
                 .setDescription(
-                  "You dont see to have a crypto wallet yet so we just made one for you!"
+                  'You dont seem to have a crypto wallet yet so we just made one for you!',
                 );
-              return await interaction.reply({
+              await interaction.reply({
                 embeds: [errorembed],
                 ephemeral: true,
               });
-            };
-            } else {
-              const errorembed = new MessageEmbed()
-                .setColor("RED")
-                .setTitle("Wopps")
-                .setDescription("This user doesn't have a crypto wallet yet.");
-
-              return await interaction.reply({
-                embeds: [errorembed],
-                ephemeral: true,
-              });
-            };
+            }
           } else {
-     await userModel
-      .findOne({ userId: interaction.user.id })
-      .then(async (result) => {
-        if (!result) {
-          const errorembed = new MessageEmbed()
-            .setColor('RED')
-            .setTitle('Wopps')
-            .setDescription(
-              'This user does not seem to have a crypto wallet yet!\n Use any command to create one!',
-            );
-
-          await interaction.reply({
-            embeds: [errorembed],
-            ephemeral: true,
-          });
-        }
-        await userModel
-          .findOne({ userID: interaction.user.id })
-          .then(async (result) => {
-            balembed
-              .setColor('#5865f4')
-              .setTitle(`${interaction.user.username}'s Crypto Wallet`)
-              .addField('Physical Wallet', `**\` ${result.walletMoney}  \`** <:bitcoin:976394052708749342>`, true)
-              .addField('Digital Wallet', `**\` ${result.bankMoney}  \`** <:bitcoin:976394052708749342>`, true);
+            const errorembed = new MessageEmbed()
+              .setColor('RED')
+              .setTitle('Wopps')
+              .setDescription("This user doesn't have a crypto wallet yet.");
 
             await interaction.reply({
-              embeds: [balembed],
-
+              embeds: [errorembed],
+              ephemeral: true,
             });
-          });
-      });
+          }
+        });
+    } else {
+      await userModel
+        .findOne({
+          userId: interaction.user.id,
+        })
+        .then(async (result) => {
+          if (!result) {
+            const errorembed = new MessageEmbed()
+              .setColor('RED')
+              .setTitle('Wopps')
+              .setDescription(
+                'This user does not seem to have a crypto wallet yet!\n Use any command to create one!',
+              );
+            await interaction.reply({
+              embeds: [errorembed],
+              ephemeral: true,
+            });
+          }
+          await userModel
+            .findOne({
+              userID: interaction.user.id,
+            })
+            .then(async (result) => {
+              balembed
+                .setColor('#5865f4')
+                .setTitle(`${interaction.user.username}'s Crypto Wallet`)
+                .addField('Physical Wallet', `**\` ${result.walletMoney}  \`** <:bitcoin:976394052708749342>`, true)
+                .addField('Digital Wallet', `**\` ${result.bankMoney}  \`** <:bitcoin:976394052708749342>`, true);
+
+              await interaction.reply({
+                embeds: [balembed],
+
+              });
+            });
+        });
     }
   },
 };

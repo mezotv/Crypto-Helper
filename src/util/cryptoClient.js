@@ -8,6 +8,7 @@ module.exports = (client) => {
 
   /* It's creating a new collection for the aliases. */
   client.commands = new Collection();
+  client.talkedRecently = new Set();
 
   /* Logging the bot in. */
   client.login(process.env.TOKEN);
