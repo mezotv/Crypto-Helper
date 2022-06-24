@@ -1,9 +1,9 @@
-const axios = require('axios');
+import axios from 'axios';
 require('dotenv').config();
-const { AutoPoster } = require('topgg-autoposter');
-const { ChalkAdvanced } = require('chalk-advanced');
+import { AutoPoster } from 'topgg-autoposter';
+import { ChalkAdvanced } from 'chalk-advanced';
 
-module.exports = function postStats(client) {
+module.exports = function postStats(client: any) {
   AutoPoster(`${process.env.AUTO_POSTER}`, client);
 
   axios({

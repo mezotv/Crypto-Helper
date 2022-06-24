@@ -13,9 +13,9 @@ const client = new Client({
 });
 
 const cryptoClientComponents = async () => {
-  await require('./util/cryptoClient')(client);
-  await require('./util/botlists')(client);
-  await require('./util/onUserVote')(client);
+  await require('./util/cryptoClient.ts')(client);
+  await require('./util/botlists.ts')(client);
+  await require('./util/onUserVote.ts')(client);
   await require('./db/dbHandler.ts');
 }
 

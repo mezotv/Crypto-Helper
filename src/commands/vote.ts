@@ -1,12 +1,11 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed } from 'discord.js';
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('vote')
     .setDescription('Vote for me!'),
-
-  async execute(interaction, client) {
+  async execute(interaction: any, client: any) {
     const votemebed = new MessageEmbed()
       .setAuthor({
         name: `${client.user.username}`,
@@ -50,7 +49,6 @@ module.exports = {
       )
       .setThumbnail(client.user.displayAvatarURL())
       .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' });
-
     await interaction.reply({
       embeds: [votemebed],
     });

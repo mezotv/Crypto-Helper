@@ -1,8 +1,8 @@
-const { hashify } = require('hashify-matchify');
+import { hashify } from 'hashify-matchify';
 const guildcreate = require('../db/Models/guildModel.ts');
 const userModel = require('../db/Models/userModel.ts');
 
-module.exports = async (interaction) => {
+module.exports = async (interaction: any) => {
   const { hash } = await hashify(interaction.user.id);
 
   if (!interaction.guild) {

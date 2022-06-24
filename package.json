@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "test": "eslint . --fix && ts-node src/index.ts ",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "tsc": "tsc --init"
   },
   "repository": {
     "type": "git",

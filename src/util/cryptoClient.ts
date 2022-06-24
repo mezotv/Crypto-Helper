@@ -1,8 +1,7 @@
-const { Collection } = require('discord.js');
-
+import { Collection } from 'discord.js';
 require('dotenv').config();
 
-module.exports = (client) => {
+module.exports = (client: any) => {
 /* Basically loading the event loader ironic right */
   require('./eventLoader')(client);
 

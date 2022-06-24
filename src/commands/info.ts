@@ -1,13 +1,13 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, version: djsversion } = require('discord.js');
-const os = require('os');
-const { version } = require('../../package.json');
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed, version as djsversion } from 'discord.js';
+import os from 'os';
+import { version } from '../../package.json';
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('info')
     .setDescription('Shows all info about the bot and its developer'),
-  async execute(interaction, client) {
+  async execute(interaction: any, client: any) {
     let days = Math.floor(client.uptime / 86400000);
     let hours = Math.floor(client.uptime / 3600000) % 24;
     let minutes = Math.floor(client.uptime / 60000) % 60;
@@ -22,7 +22,8 @@ module.exports = {
       .addField(
         'General',
         [
-          '**❯ Developer:** [Mezo](https://sexymezo.com)',
+          '**❯ Developer:** [Devevelopers Dungeon Studios](https://developersdungeon.xyz/)',
+          '**❯ Discord Server:** [Invite](https://discord.gg/KfBkKKydfg)',
           `**❯ Client:** [Crypto Helper Invite](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=274878294080&scope=bot%20applications.commands)`,
           `**❯ Commands:** ${client.commands.size}`,
           `**❯ Servers:** ${client.guilds.cache.size.toLocaleString()} `,

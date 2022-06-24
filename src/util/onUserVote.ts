@@ -1,19 +1,18 @@
-const { Webhook } = require('@top-gg/sdk');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-const express = require('express');
-
-require('dotenv').config;
+import { Webhook } from '@top-gg/sdk';
+import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
+import express from 'express';
+require('dotenv').config();
 
 const userModel = require('../db/Models/userModel.ts');
 
 const app = express();
 
-module.exports = async function postStats(client) {
+module.exports = async function postStats(client: any) {
   const webhook = new Webhook(process.env.DBLTOKEN);
 
   app.post(
     '/dblwebhook',
-    webhook.listener(async (vote) => {
+    webhook.listener(async (vote: any) => {
       const voteUser = await client.users.fetch(vote.user);
       const staffDm = await client.users.fetch('347077478726238228');
 

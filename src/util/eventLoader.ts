@@ -1,6 +1,6 @@
-const { readdir } = require('fs');
+import { readdir } from 'fs';
 
-module.exports = async (client) => {
+module.exports = async (client: any) => {
   readdir('./src/events/', (err, files) => {
     if (err) return console.error(err);
 

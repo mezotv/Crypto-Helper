@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed } from 'discord.js';
 const userModel = require('../db/Models/userModel.ts');
 
 module.exports = {
@@ -11,14 +11,14 @@ module.exports = {
       .setDescription('Get the balance of a user')
       .setRequired(false)),
 
-  async execute(interaction) {
+  async execute(interaction: any) {
     let balembed = new MessageEmbed();
     if (interaction.options.getUser('user')) {
       await userModel
         .findOne({
           userId: interaction.options.getUser('user').id,
         })
-        .then(async (result) => {
+        .then(async (result: any) => {
           if (!result) {
             if (interaction.options.getUser('user').id == interaction.user.id) {
               const errorembed = new MessageEmbed()
@@ -49,7 +49,7 @@ module.exports = {
         .findOne({
           userId: interaction.user.id,
         })
-        .then(async (result) => {
+        .then(async (result: any) => {
           if (!result) {
             const errorembed = new MessageEmbed()
               .setColor('RED')
@@ -66,7 +66,7 @@ module.exports = {
             .findOne({
               userID: interaction.user.id,
             })
-            .then(async (result) => {
+            .then(async (result: any) => {
               balembed
                 .setColor('#5865f4')
                 .setTitle(`${interaction.user.username}'s Crypto Wallet`)

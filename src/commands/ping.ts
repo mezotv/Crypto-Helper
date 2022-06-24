@@ -1,12 +1,12 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Displays the clients ping'),
 
-  async execute(interaction, client) {
+  async execute(interaction: any, client: any) {
     const pingembed = new MessageEmbed()
 
       .setColor('#5865f4')
