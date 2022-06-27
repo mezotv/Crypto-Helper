@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed } from 'discord.js';
-import axios from 'axios';
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
+const axios = require('axios');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,7 +13,7 @@ module.exports = {
       .setName('bitcoin')
       .setDescription('Shows the current bitcoin gas price')),
 
-  async execute(interaction: any, client: any) {
+  async execute(interaction, client) {
     let gasembed = new MessageEmbed();
     switch (interaction.options.getSubcommand()) {
       case 'ethereum': {
@@ -29,7 +29,7 @@ module.exports = {
           })
             .then((res) => {
               data = res.data;
-       })
+            })
             .catch((err) => {
               console.log(err);
             });
@@ -37,11 +37,7 @@ module.exports = {
           return;
         }
 
-        if (data.result  != undefined) {
-            return;
-        }
-
-        let embedcolor: any = '#5865f4';
+        let embedcolor;
 
         if (data.result.suggestBaseFee >= 90) {
           embedcolor = '#dd2f45';
@@ -51,7 +47,7 @@ module.exports = {
           embedcolor = '#79b359';
         }
 
-        let fastemoji: any = '#5865f4';
+        let fastemoji = '#5865f4';
         if (data.result.FastGasPrice >= 100) {
           fastemoji = '🔴';
         } else if (data.result.FastGasPrice >= 50) {
@@ -61,7 +57,7 @@ module.exports = {
         }
 
         // Normal
-        let normalemoji: any = '#5865f4';
+        let normalemoji = '#5865f4';
         if (data.result.ProposeGasPrice >= 90) {
           normalemoji = '🔴';
         } else if (data.result.ProposeGasPrice >= 45) {
@@ -71,7 +67,7 @@ module.exports = {
         }
 
         // Slow
-        let slowemoji: any = '#5865f4';
+        let slowemoji = '#5865f4';
         if (data.result.SafeGasPrice >= 85) {
           slowemoji = '🔴';
         } else if (data.result.SafeGasPrice >= 40) {

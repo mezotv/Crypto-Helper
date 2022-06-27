@@ -1,6 +1,6 @@
-const guildcreate = require('../db/Models/userModel.ts');
+const guildcreate = require('../db/Models/guildModel');
 
-module.exports = async (guild: any) => {
+module.exports = async (guild) => {
   const result = await guildcreate.findOne({ guildID: guild.id });
   if (!result) {
     await guildcreate.create({
@@ -9,4 +9,4 @@ module.exports = async (guild: any) => {
     });
   } else {
   }
-}
+};

@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed } from 'discord.js';
-import { hashify } from 'hashify-matchify';
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
+const { hashify } = require('hashify-matchify');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -11,7 +11,7 @@ module.exports = {
       .setDescription('The string you want to hash')
       .setRequired(true)),
 
-  async execute(interaction: any) {
+  async execute(interaction) {
     const hashstring = `**${interaction.options.getString('content')}**`;
 
     const { hash } = await hashify(hashstring);

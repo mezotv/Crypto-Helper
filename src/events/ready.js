@@ -1,12 +1,12 @@
-import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v10';
-import { readdirSync } from 'fs';
-import { ChalkAdvanced } from 'chalk-advanced';
-import axios from 'axios';
-import { fetchDungeon, fetchDungeonSingle } from 'dungeon-api';
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v10');
+const { readdirSync } = require('fs');
+const { ChalkAdvanced } = require('chalk-advanced');
+const axios = require('axios');
+const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
-module.exports = async (client: any) => {
-  const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.ts'));
+module.exports = async (client) => {
+  const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
 
   const commands = [];
 

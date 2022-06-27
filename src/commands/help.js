@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed } from 'discord.js';
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -9,7 +9,7 @@ module.exports = {
     .addSubcommand((subCommand) => subCommand.setName('miner').setDescription('List of all miner commands'))
     .addSubcommand((subCommand) => subCommand.setName('economy').setDescription('List of all economy commands')),
 
-  async execute(interaction: any, client: any) {
+  async execute(interaction, client) {
     let helpembed = new MessageEmbed();
     switch (interaction.options.getSubcommand()) {
       case 'utility': {

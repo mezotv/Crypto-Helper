@@ -1,11 +1,8 @@
-import axios from 'axios';
+const axios = require('axios');
 require('dotenv').config();
-import { AutoPoster } from 'topgg-autoposter';
-import { ChalkAdvanced } from 'chalk-advanced';
+const { ChalkAdvanced } = require('chalk-advanced');
 
-module.exports = function postStats(client: any) {
-  AutoPoster(`${process.env.AUTO_POSTER}`, client);
-
+module.exports = function postStats(client) {
   axios({
     method: 'post',
     url: 'https://api.voidbots.net/bot/stats/747050613656911892',

@@ -1,13 +1,13 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed, version as djsversion } from 'discord.js';
-import os from 'os';
-import { version } from '../../package.json';
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed, version: djsversion } = require('discord.js');
+const os = require('os');
+const { version } = require('../../package.json');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('info')
     .setDescription('Shows all info about the bot and its developer'),
-  async execute(interaction: any, client: any) {
+  async execute(interaction, client) {
     let days = Math.floor(client.uptime / 86400000);
     let hours = Math.floor(client.uptime / 3600000) % 24;
     let minutes = Math.floor(client.uptime / 60000) % 60;

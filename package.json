@@ -2,9 +2,11 @@
   "name": "crypto-helper-remake",
   "version": "2.0.5",
   "description": "This bot is tracking the current Ethereum and Bitcoin transaction fee's.",
+  "type": "commonjs",
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "cluster": "node cluster.js",
     "test": "eslint . --fix && ts-node src/index.ts ",
     "lint": "eslint . --fix",
     "tsc": "tsc --init"
@@ -28,6 +30,7 @@
     "axios": "^0.27.2",
     "chalk-advanced": "^1.0.3",
     "discord-api-types": "^0.31.0",
+    "discord-hybrid-sharding": "^1.6.2",
     "discord-modals": "^1.3.5",
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.0",

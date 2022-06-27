@@ -1,30 +1,37 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed, MessageActionRow, MessageButton } from 'discord.js';
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Displays the clients ping'),
 
-  async execute(interaction: any, client: any) {
+  async execute(interaction, client) {
     const pingembed = new MessageEmbed()
 
       .setColor('#5865f4')
       .setTitle(':ping_pong:  Pong!')
+      .setDescription(`You are on cluster: **#${client.cluster.id + 1}** out of **2** clusters`)
       .addFields(
         {
-          name: '**Client** latency',
+          name: '**Cluster** latency',
           value: `> **${Math.abs(
             Date.now() - interaction.createdTimestamp,
           )}**ms`,
-          inline: false,
+          inline: true,
         },
         {
           name: '**Api** latency',
           value: `> **${Math.round(client.ws.ping)}**ms`,
-          inline: false,
+          inline: true,
+        },
+        {
+          name: '**Total Shards**',
+          value: `> **${client.cluster.info.TOTAL_SHARDS}**`,
+          inline: true,
         },
       );
+
     const button = new MessageActionRow().addComponents(
       new MessageButton()
         .setLabel('Discord latency')
@@ -39,9 +46,5 @@ module.exports = {
       embeds: [pingembed],
       components: [button],
     });
-    setTimeout(() => {
-      button.components[0].setDisabled(true);
-      interaction.editReply({ embeds: [pingembed], components: [button] });
-    }, 120000);
   },
 };

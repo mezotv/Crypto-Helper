@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed } from 'discord.js';
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,7 +12,7 @@ module.exports = {
     .addSubcommand((subCommand) => subCommand.setName('xmrig').setDescription('Setup for XMRig'))
     .addSubcommand((subCommand) => subCommand.setName('salad').setDescription('Setup for Salad.io')),
 
-  async execute(interaction: any, client: any) {
+  async execute(interaction, client) {
     let gasembed = new MessageEmbed();
     switch (interaction.options.getSubcommand()) {
       case 'phoenixminer': {

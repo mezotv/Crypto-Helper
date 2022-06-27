@@ -1,7 +1,8 @@
-import { Collection } from 'discord.js';
+const Cluster = require('discord-hybrid-sharding');
+const { Collection } = require('discord.js');
 require('dotenv').config();
 
-module.exports = (client: any) => {
+module.exports = (client) => {
 /* Basically loading the event loader ironic right */
   require('./eventLoader')(client);
 
@@ -10,5 +11,6 @@ module.exports = (client: any) => {
   client.talkedRecently = new Set();
 
   /* Logging the bot in. */
+  client.cluster = new Cluster.Client(client);
   client.login(process.env.TOKEN);
 };
