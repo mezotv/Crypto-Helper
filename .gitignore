@@ -131,3 +131,4 @@ dist
 .pnp.*
 .eslintrc.json
 .eslintignore
+src/coindata/ethereum.json
