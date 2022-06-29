@@ -10,5 +10,12 @@ const manager = new Cluster.Manager(`${__dirname}/src/index.js`, {
   token: process.env.TOKEN,
 });
 
+manager.extend(
+  new Cluster.HeartbeatManager({
+    interval: 2000, // Interval to send a heartbeat
+    maxMissedHeartbeats: 5, // Maximum amount of missed Heartbeats until Cluster will get respawned
+  }),
+);
+
 manager.on('clusterCreate', (cluster) => console.log(`Launched Cluster ${cluster.id}`));
 manager.spawn({ timeout: -1 });

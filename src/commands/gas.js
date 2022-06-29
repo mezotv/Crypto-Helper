@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const axios = require('axios');
+const { readFileSync } = require('fs');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -17,25 +17,8 @@ module.exports = {
     let gasembed = new MessageEmbed();
     switch (interaction.options.getSubcommand()) {
       case 'ethereum': {
-        let data;
-        try {
-          await axios({
-            method: 'post',
-            url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-          })
-            .then((res) => {
-              data = res.data;
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } catch (err) {
-          return;
-        }
+        let rawdata = readFileSync('./src/coindata/ethereum.json');
+        let data = JSON.parse(rawdata);
 
         let embedcolor;
 

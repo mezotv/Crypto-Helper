@@ -2,7 +2,7 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');
 const { readdirSync } = require('fs');
 const { ChalkAdvanced } = require('chalk-advanced');
-const axios = require('axios');
+const { readFileSync } = require('fs');
 const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
 module.exports = async (client) => {
@@ -57,25 +57,9 @@ module.exports = async (client) => {
 
   setInterval(() => {
     (async () => {
-      let data;
-      try {
-        await axios({
-          method: 'post',
-          url: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.API_KEY}`,
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        })
-          .then((res) => {
-            data = res.data;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } catch (err) {
-        return;
-      }
+      let rawdata = readFileSync('./src/coindata/ethereum.json');
+      let data = JSON.parse(rawdata);
+
       const status = [
         `⚡${data.result.FastGasPrice} |🚶${data.result.ProposeGasPrice} |🐢${data.result.SafeGasPrice} |`,
       ];

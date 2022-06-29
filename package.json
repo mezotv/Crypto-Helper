@@ -3,9 +3,9 @@
   "version": "2.0.5",
   "description": "This bot is tracking the current Ethereum and Bitcoin transaction fee's.",
   "type": "commonjs",
-  "main": "src/index.ts",
+  "main": "cluster.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "node cluster.js",
     "cluster": "node cluster.js",
     "test": "eslint . --fix && ts-node src/index.ts ",
     "lint": "eslint . --fix",

@@ -1,9 +1,17 @@
 const axios = require('axios');
 require('dotenv').config();
+const Topgg = require('@top-gg/sdk');
 const { ChalkAdvanced } = require('chalk-advanced');
 
-module.exports = function postStats(client) {
-  axios({
+module.exports = async function postStats(client) {
+  const api = new Topgg.Api(process.env.AUTO_POSTER);
+
+  await api.postStats({
+    serverCount: `${client.guilds.cache.size}`,
+    shardCount: `${client.cluster.info.TOTAL_SHARDS}`,
+  });
+
+  await axios({
     method: 'post',
     url: 'https://api.voidbots.net/bot/stats/747050613656911892',
     headers: {
@@ -13,13 +21,13 @@ module.exports = function postStats(client) {
     },
     data: {
       server_count: client.guilds.cache.size,
-      shard_count: 1,
+      shard_count: client.cluster.info.TOTAL_SHARDS,
     },
   })
     .then(() => {})
     .catch(() => {});
 
-  axios({
+  await axios({
     method: 'post',
     url: 'https://api.botlist.me/api/v1/bots/747050613656911892/stats',
     headers: {
@@ -29,14 +37,14 @@ module.exports = function postStats(client) {
     },
     data: {
       server_count: client.guilds.cache.size,
-      shard_count: 1,
+      shard_count: client.cluster.info.TOTAL_SHARDS,
     },
   })
     .then(() => {})
     .catch(() => {
     });
 
-  axios({
+  await axios({
     method: 'post',
     url: 'https://radarbotdirectory.xyz/api/bot/747050613656911892/stats',
     headers: {
@@ -46,7 +54,7 @@ module.exports = function postStats(client) {
     },
     data: {
       guilds: client.guilds.cache.size,
-      shards: 1,
+      shards: client.cluster.info.TOTAL_SHARDS,
     },
   })
     .then(() => {})

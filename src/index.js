@@ -18,7 +18,10 @@ const client = new Client({
 const cryptoClientComponents = async () => {
   await require('./util/cryptoClient')(client);
   await require('./util/botlists')(client);
+
   await require('./db/dbHandler');
 };
+const { fetchGas } = require('./util/fetchGas');
 
+fetchGas();
 cryptoClientComponents();
