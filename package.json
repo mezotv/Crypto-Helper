@@ -36,7 +36,7 @@
     "dotenv": "^16.0.0",
     "dungeon-api": "^1.0.2",
     "express": "^4.18.1",
-    "glob": "^7.2.0",
+    "glob": "^8.0.0",
     "hashify-matchify": "^1.0.0",
     "ibl-autopost": "^1.1.5",
     "mongoose": "^6.3.6",
