@@ -6,7 +6,7 @@ module.exports = {
     .setName('help')
     .setDescription('Get a list of all commands supported by the bot')
     .addSubcommand((subCommand) => subCommand.setName('utility').setDescription('List of all utility commands'))
-    .addSubcommand((subCommand) => subCommand.setName('miner').setDescription('List of all miner commands')),
+    .addSubcommand((subCommand) => subCommand.setName('crypto').setDescription('List of all crypto commands')),
 
   async execute(interaction, client) {
     let helpembed = new MessageEmbed();
@@ -50,18 +50,28 @@ module.exports = {
           .setTimestamp();
         break;
       }
-      case 'miner': {
+      case 'crypto': {
         helpembed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
           })
           .setColor('#5865f4')
-          .setTitle('⛏️ Miner Commands!')
+          .setTitle('⛏️ Crypto Commands!')
           .addFields(
             {
               name: '**/lhr**',
               value: '> Get info about nvidias lhr mode',
+              inline: true,
+            },
+            {
+              name: '**/gas [bitcoin/ethereum]**',
+              value: '> Shows the current gas price for the selected coin',
+              inline: true,
+            },
+            {
+              name: '**/coin [any crypto coin]**',
+              value: '> Get advanced info about a crypto currenzy',
               inline: true,
             },
             {

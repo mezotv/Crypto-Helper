@@ -6,7 +6,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('coin')
-    .setDescription('Get info about a coin')
+    .setDescription('Get advanced info about a crypto currenzy')
     .addStringOption((option) => option.setName('name')
       .setDescription('name for the coin you want to get')
       .setRequired(true)),
