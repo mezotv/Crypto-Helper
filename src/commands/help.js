@@ -80,8 +80,10 @@ module.exports = {
               inline: true,
             },
           )
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
-          .setTimestamp();
+          .setTimestamp()
+          .setFooter({
+            text: 'Crypto Helper made by Developer Dungeon Studios',
+          });
         break;
       }
       default:

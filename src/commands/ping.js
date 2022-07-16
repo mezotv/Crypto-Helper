@@ -21,12 +21,12 @@ module.exports = {
           inline: true,
         },
         {
-          name: '**Api** latency',
+          name: '**API** latency',
           value: `> **${Math.round(client.ws.ping)}**ms`,
           inline: true,
         },
         {
-          name: '**Total Shards**',
+          name: '**Total shards**',
           value: `> **${client.cluster.info.TOTAL_SHARDS}**`,
           inline: true,
         },

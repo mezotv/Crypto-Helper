@@ -11,7 +11,7 @@ module.exports = {
       .setRequired(true)),
 
   async execute(interaction, client) {
-    let datacrypto;
+    let cryptoData;
     try {
       await axios({
         method: 'GET',
@@ -30,33 +30,33 @@ module.exports = {
         },
       })
         .then((res) => {
-          datacrypto = res.data;
+          cryptoData = res.data;
         })
         .catch(() => {
         });
     } catch (err) {}
     let coinembed;
 
-    if (datacrypto == undefined || null) {
+    if (cryptoData == undefined || null) {
       coinembed = new MessageEmbed()
         .setColor('RED')
         .setTitle('Error')
-        .setDescription('Could not find a coin with the given id');
+        .setDescription('Could not find a coin with the given ID.');
     } else {
       coinembed = new MessageEmbed()
         .setColor('RANDOM')
-        .setTitle(`Coin: ${datacrypto.name}`)
-        .setThumbnail(datacrypto.image.large)
+        .setTitle(`Coin: ${cryptoData.name}`)
+        .setThumbnail(cryptoData.image.large)
         .addFields(
-          { name: 'Symbol', value: datacrypto.symbol, inline: true },
-          { name: 'Market Cap Rank', value: `#${datacrypto.market_cap_rank}`, inline: true },
-          { name: 'Price in USD', value: `$${datacrypto.market_data.current_price.usd}`, inline: true },
-          { name: 'Price in EUR', value: `${datacrypto.market_data.current_price.eur}€`, inline: true },
-          { name: '24h Price Change', value: `${datacrypto.market_data.price_change_percentage_24h}%`, inline: true },
-          { name: 'Volume', value: `$${datacrypto.market_data.total_volume.usd}`, inline: true },
-          { name: 'Circulating Supply', value: `${datacrypto.market_data.circulating_supply}`, inline: true },
-          { name: 'Total Supply', value: `${datacrypto.market_data.total_supply}`, inline: true },
-          { name: 'Website', value: `[${datacrypto.links.homepage[0]}](${datacrypto.links.homepage[0]})`, inline: true },
+          { name: 'Symbol', value: cryptoData.symbol, inline: true },
+          { name: 'Market Cap Rank', value: `#${cryptoData.market_cap_rank}`, inline: true },
+          { name: 'Price in USD', value: `$${cryptoData.market_data.current_price.usd}`, inline: true },
+          { name: 'Price in EUR', value: `${cryptoData.market_data.current_price.eur}€`, inline: true },
+          { name: '24h Price Change', value: `${cryptoData.market_data.price_change_percentage_24h}%`, inline: true },
+          { name: 'Volume', value: `$${cryptoData.market_data.total_volume.usd}`, inline: true },
+          { name: 'Circulating Supply', value: `${cryptoData.market_data.circulating_supply}`, inline: true },
+          { name: 'Total Supply', value: `${cryptoData.market_data.total_supply}`, inline: true },
+          { name: 'Website', value: `[${cryptoData.links.homepage[0]}](${cryptoData.links.homepage[0]})`, inline: true },
         )
         .setTimestamp()
         .setFooter({

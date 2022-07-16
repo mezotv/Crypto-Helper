@@ -14,56 +14,56 @@ module.exports = {
       .setDescription('Shows the current bitcoin gas price')),
 
   async execute(interaction, client) {
-    let gasembed = new MessageEmbed();
+    let gasEmbed = new MessageEmbed();
     switch (interaction.options.getSubcommand()) {
       case 'ethereum': {
         let rawdata = readFileSync('./src/coindata/ethereum.json');
         let data = JSON.parse(rawdata);
 
-        let embedcolor;
+        let embedColor;
 
         if (data.result.suggestBaseFee >= 90) {
-          embedcolor = '#dd2f45';
+          embedColor = '#dd2f45';
         } else if (data.result.suggestBaseFee >= 45) {
-          embedcolor = '#ffac32';
+          embedColor = '#ffac32';
         } else {
-          embedcolor = '#79b359';
+          embedColor = '#79b359';
         }
 
-        let fastemoji = '#5865f4';
+        let fastEmoji = '#5865f4';
         if (data.result.FastGasPrice >= 100) {
-          fastemoji = '🔴';
+          fastEmoji = '🔴';
         } else if (data.result.FastGasPrice >= 50) {
-          fastemoji = '🟠';
+          fastEmoji = '🟠';
         } else {
-          fastemoji = '🟢';
+          fastEmoji = '🟢';
         }
 
         // Normal
-        let normalemoji = '#5865f4';
+        let normalEmoji = '#5865f4';
         if (data.result.ProposeGasPrice >= 90) {
-          normalemoji = '🔴';
+          normalEmoji = '🔴';
         } else if (data.result.ProposeGasPrice >= 45) {
-          normalemoji = '🟠';
+          normalEmoji = '🟠';
         } else {
-          normalemoji = '🟢';
+          normalEmoji = '🟢';
         }
 
         // Slow
-        let slowemoji = '#5865f4';
+        let slowEmoji = '#5865f4';
         if (data.result.SafeGasPrice >= 85) {
-          slowemoji = '🔴';
+          slowEmoji = '🔴';
         } else if (data.result.SafeGasPrice >= 40) {
-          slowemoji = '🟠';
+          slowEmoji = '🟠';
         } else {
-          slowemoji = '🟢';
+          slowEmoji = '🟢';
         }
-        gasembed
+        gasEmbed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
           })
-          .setColor(embedcolor)
+          .setColor(embedColor)
           .setTitle(`Last Block: **${data.result.LastBlock}**`)
           .setThumbnail(
             'https://cdn.discordapp.com/attachments/926292185748496446/972791200308416532/eth.png',
@@ -73,17 +73,17 @@ module.exports = {
           .addFields(
             {
               name: '⚡Fast',
-              value: `> ${fastemoji} **${data.result.FastGasPrice}**gwei`,
+              value: `> ${fastEmoji} **${data.result.FastGasPrice}**gwei`,
               inline: true,
             },
             {
               name: '🚶Normal',
-              value: `> ${normalemoji} **${data.result.ProposeGasPrice}**gwei`,
+              value: `> ${normalEmoji} **${data.result.ProposeGasPrice}**gwei`,
               inline: true,
             },
             {
               name: '🐢Slow',
-              value: `> ${slowemoji} **${data.result.SafeGasPrice}**gwei`,
+              value: `> ${slowEmoji} **${data.result.SafeGasPrice}**gwei`,
               inline: true,
             },
             {
@@ -99,7 +99,7 @@ module.exports = {
         break;
       }
       case 'bitcoin': {
-        gasembed
+        gasEmbed
           .setAuthor({
             name: `${client.user.username}`,
             iconURL: client.user.avatarURL(),
@@ -113,7 +113,7 @@ module.exports = {
           .setDescription('Current Bitcoin transaction price:')
           .addFields(
             {
-              name: '⚡Fast',
+              name: '⚡ Fast',
               value: '> **102**satoshis/byte',
               inline: true,
             },
@@ -138,7 +138,7 @@ module.exports = {
         break;
     }
     interaction.reply({
-      embeds: [gasembed],
+      embeds: [gasEmbed],
     });
   },
 };

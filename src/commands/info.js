@@ -49,8 +49,10 @@ module.exports = {
           `> Base Speed: ${core.speed}MHz`,
         ].join('\n'),
       )
-      .setFooter({ text: 'Crypto Helper made by Mezo#0001' })
-      .setTimestamp();
+      .setTimestamp()
+      .setFooter({
+        text: 'Crypto Helper made by Developer Dungeon Studios',
+      });
 
     await interaction.reply({ embeds: [infoembed] });
   },

@@ -1,4 +1,4 @@
-const guildcreate = require('../db/Models/guildModel');
+const guildCreate = require('../db/Models/guildModel');
 
 module.exports = async (interaction) => {
   if (!interaction.guild) {
@@ -7,9 +7,9 @@ module.exports = async (interaction) => {
       ephemeral: true,
     });
   } else {
-    guildcreate.findOne({ guildID: interaction.guild.id }).then(async (result) => {
+    guildCreate.findOne({ guildID: interaction.guild.id }).then(async (result) => {
       if (!result) {
-        await guildcreate.create({
+        await guildCreate.create({
           guildID: interaction.guild.id,
           botJoined: (Date.now() / 1000) | 0,
           fistCommandUse: (Date.now() / 1000) | 0,
@@ -25,7 +25,7 @@ module.exports = async (interaction) => {
       } catch (err) {
         if (err) console.error(err);
         interaction.reply({
-          content: 'An error occurred while executing that command.',
+          content: 'An error occurred while executing that command!',
           ephemeral: true,
         });
       }

@@ -1,6 +1,8 @@
 const Cluster = require('discord-hybrid-sharding');
 require('dotenv').config();
 
+const { ChalkAdvanced } = require('chalk-advanced');
+
 const manager = new Cluster.Manager(`${__dirname}/src/index.js`, {
   totalShards: 4, // or 'auto'
   /// Check below for more options
@@ -17,5 +19,5 @@ manager.extend(
   }),
 );
 
-manager.on('clusterCreate', (cluster) => console.log(`Launched Cluster ${cluster.id}`));
+manager.on('clusterCreate', (cluster) => console.log(ChalkAdvanced.green(`Launched cluster ${cluster.id}!`)));
 manager.spawn({ timeout: -1 });

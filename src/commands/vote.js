@@ -13,7 +13,7 @@ module.exports = {
       })
       .setColor('#5865f4')
       .setTitle(
-        'Voting helps **Crypto Helper** gain more users! So make sure to vote every day!',
+        'Voting helps **Crypto Helper** gain more users, so make sure to vote every day!',
       )
       .addFields(
         {
@@ -48,7 +48,9 @@ module.exports = {
         },
       )
       .setThumbnail(client.user.displayAvatarURL())
-      .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' });
+      .setFooter({
+        text: 'Crypto Helper made by Developer Dungeon Studios',
+      });
     await interaction.reply({
       embeds: [votemebed],
     });

@@ -30,7 +30,10 @@ module.exports = {
           value: `||${hash}||`,
           inline: false,
         },
-      );
+      )
+      .setFooter({
+        text: 'Crypto Helper made by Developer Dungeon Studios',
+      });
 
     await interaction.reply({
       embeds: [hashembed],

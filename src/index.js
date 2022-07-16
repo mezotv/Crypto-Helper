@@ -21,6 +21,7 @@ const cryptoClientComponents = async () => {
 
   await require('./db/dbHandler');
 };
+
 const { fetchGas } = require('./util/fetchGas');
 
 fetchGas();
