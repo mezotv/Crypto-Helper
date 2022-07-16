@@ -75,6 +75,11 @@ module.exports = {
               inline: true,
             },
             {
+              name: '**/global**',
+              value: '> Global Info about cryptocurrencies',
+              inline: true,
+            },
+            {
               name: '**/miner [selected miner]**',
               value: '> Shows a setup guide for the selected miner aswell as some info',
               inline: true,
