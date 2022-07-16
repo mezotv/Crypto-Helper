@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const axios = require('axios');
-const { writeFile } = require('fs');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -17,6 +16,14 @@ module.exports = {
       await axios({
         method: 'GET',
         url: `https://coingecko.p.rapidapi.com/coins/${interaction.options.getString('name')}`,
+        params: {
+          localization: 'true',
+          tickers: 'true',
+          market_data: 'true',
+          community_data: 'true',
+          developer_data: 'true',
+          sparkline: 'false',
+        },
         headers: {
           'X-RapidAPI-Key': process.env.COINAPI,
           'X-RapidAPI-Host': 'coingecko.p.rapidapi.com',
@@ -41,7 +48,8 @@ module.exports = {
         .setTitle(`Coin: ${datacrypto.name}`)
         .setThumbnail(datacrypto.image.large)
         .addFields(
-          { name: 'Symbol', value: datacrypto.symbol, inline: false },
+          { name: 'Symbol', value: datacrypto.symbol, inline: true },
+          { name: 'Market Cap Rank', value: `#${datacrypto.market_cap_rank}`, inline: true },
           { name: 'Price in USD', value: `$${datacrypto.market_data.current_price.usd}`, inline: true },
           { name: 'Price in EUR', value: `${datacrypto.market_data.current_price.eur}€`, inline: true },
           { name: '24h Price Change', value: `${datacrypto.market_data.price_change_percentage_24h}%`, inline: true },
