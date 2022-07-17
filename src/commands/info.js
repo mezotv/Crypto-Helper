@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, version: djsversion } = require('discord.js');
+const { MessageEmbed, SlashCommandBuilder, version: djsversion } = require('discord.js');
 const os = require('os');
 const { version } = require('../../package.json');
 
