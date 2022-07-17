@@ -1,19 +1,25 @@
+const path = require('path');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v10');
-const { readdirSync } = require('fs');
+const { readdirSync, readFileSync } = require('fs');
 const { ChalkAdvanced } = require('chalk-advanced');
-const { readFileSync } = require('fs');
 const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
 module.exports = async (client) => {
-  const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
+  const commandsPath = path.join(__dirname, 'src/commands');
+  const commandFolders = readdirSync(commandsPath);
 
   const commands = [];
 
-  for (const file of commandFiles) {
-    const command = require(`../commands/${file}`);
-    commands.push(command.data.toJSON());
-    client.commands.set(command.data.name, command);
+  for (const folder of commandFolders) {
+    const folderPath = path.join(commandsPath, folder);
+    const commandFiles = readdirSync(folderPath).filter((file) => file.endsWith('.js'));
+    for (const file of commandFiles) {
+      const filePath = path.join(folderPath, file);
+      const command = require(filePath);
+      commands.push(command.data.toJSON());
+      client.commands.set(command.data.name, command);
+    }
   }
 
   const rest = new REST({
