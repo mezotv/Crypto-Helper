@@ -15,7 +15,7 @@ module.exports = {
     switch (interaction.options.getSubcommand()) {
       case 'utility': {
         // loop through all commands in the utility folder and retrieve their names and descriptions
-        const utilityPath = path.join(__dirname, 'src/commands/utility');
+        const utilityPath = await path.join(__dirname, '../utility/');
         const utilityFolders = readdirSync(utilityPath);
         const utilityCommands = [];
         for (const folder of utilityFolders) {
@@ -44,7 +44,7 @@ module.exports = {
       }
       case 'crypto': {
         // loop through all commands in the crypto folder and retrieve their names and descriptions
-        const cryptoPath = path.join(__dirname, 'src/commands/crypto');
+        const cryptoPath = await path.join(__dirname, '../crypto/');
         const cryptoFolders = readdirSync(cryptoPath);
         const cryptoCommands = [];
         for (const folder of cryptoFolders) {

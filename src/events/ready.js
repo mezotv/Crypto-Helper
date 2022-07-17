@@ -6,7 +6,7 @@ const { ChalkAdvanced } = require('chalk-advanced');
 const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
 module.exports = async (client) => {
-  const commandsPath = path.join(__dirname, 'src/commands');
+  const commandsPath = path.join(__dirname, '../commands/');
   const commandFolders = readdirSync(commandsPath);
 
   const commands = [];
