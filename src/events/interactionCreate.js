@@ -1,4 +1,3 @@
-const { InteractionType } = require('discord.js');
 const guildcreate = require('../db/Models/guildModel');
 
 module.exports = async (interaction) => {
@@ -18,7 +17,7 @@ module.exports = async (interaction) => {
       } else {}
 
       const { client } = interaction;
-      if (!interaction.type === InteractionType.ApplicationCommand) return;
+      if (!interaction.isChatInputCommand()) return;
       const command = client.commands.get(interaction.commandName);
       if (!command) return;
       try {

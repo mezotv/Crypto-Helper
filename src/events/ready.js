@@ -3,7 +3,6 @@ const { Routes } = require('discord-api-types/v10');
 const { readdirSync } = require('fs');
 const { ChalkAdvanced } = require('chalk-advanced');
 const { readFileSync } = require('fs');
-const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
 module.exports = async (client) => {
   const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
@@ -51,9 +50,6 @@ module.exports = async (client) => {
       if (err) console.error(err);
     }
   })();
-
-  fetchDungeonSingle('cryptohelper', process.env.DEVELOPERSDUNGEON, client);
-  fetchDungeon('cryptohelper', process.env.DEVELOPERSDUNGEON, client);
 
   setInterval(() => {
     (async () => {

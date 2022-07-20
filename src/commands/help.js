@@ -1,4 +1,4 @@
-const { MessageEmbed, SlashCommandBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,7 +8,7 @@ module.exports = {
     .addSubcommand((subCommand) => subCommand.setName('crypto').setDescription('List of all crypto commands')),
 
   async execute(interaction, client) {
-    let helpembed = new MessageEmbed();
+    let helpembed = new EmbedBuilder();
     switch (interaction.options.getSubcommand()) {
       case 'utility': {
         helpembed

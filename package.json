@@ -18,7 +18,7 @@
   "keywords": [
     "Crypto",
     "Mezo",
-    "Sexymezo.com"
+    "crypto bot"
   ],
   "author": "Mezo",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "discord-api-types": "^0.36.0",
     "discord-hybrid-sharding": "^1.6.2",
     "discord-modals": "^1.3.5",
-    "discord.js": "^14.0.1",
+    "discord.js": "^14.0.3",
     "dotenv": "^16.0.0",
     "dungeon-api": "^1.0.2",
     "express": "^4.18.1",
@@ -41,9 +41,7 @@
     "mongoose": "^6.3.6",
     "ms": "^2.1.3",
     "os": "^0.1.2",
-    "topgg-autoposter": "^2.0.1",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.4.4"
+    "topgg-autoposter": "^2.0.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.30.3",

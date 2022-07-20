@@ -1,4 +1,4 @@
-const { MessageEmbed, SlashCommandBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { hashify } = require('hashify-matchify');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
 
     const { hash } = await hashify(hashstring);
 
-    const hashembed = new MessageEmbed()
+    const hashembed = new EmbedBuilder()
       .setColor('#5865f4')
       .setTitle('🪴 String hashed!')
       .addFields(

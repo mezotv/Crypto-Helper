@@ -1,5 +1,5 @@
 const {
-  MessageEmbed, SlashCommandBuilder, MessageActionRow, MessageButton,
+  EmbedBuilder, SlashCommandBuilder, ActionRowBuilder, ButtonBuilder,
 } = require('discord.js');
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
     .setDescription('Displays the clients ping'),
 
   async execute(interaction, client) {
-    const pingembed = new MessageEmbed()
+    const pingembed = new EmbedBuilder()
 
       .setColor('#5865f4')
       .setTitle(':ping_pong:  Pong!')
@@ -33,10 +33,10 @@ module.exports = {
         },
       );
 
-    const button = new MessageActionRow().addComponents(
-      new MessageButton()
+    const button = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
         .setLabel('Discord latency')
-        .setStyle('LINK')
+        .setStyle(5)
         .setEmoji('💻')
         .setURL(
           'https://discordstatus.com/',
