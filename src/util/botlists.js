@@ -2,6 +2,7 @@ const axios = require('axios');
 require('dotenv').config();
 const Topgg = require('@top-gg/sdk');
 const { ChalkAdvanced } = require('chalk-advanced');
+const { fetchDungeon, fetchDungeonSingle } = require('dungeon-api');
 
 module.exports = async function postStats(client) {
   const api = new Topgg.Api(process.env.AUTO_POSTER);
@@ -67,4 +68,7 @@ module.exports = async function postStats(client) {
       'Pushing stats to Botlists',
     )}`,
   );
+
+  await fetchDungeonSingle('cryptohelper', process.env.DEVELOPERSDUNGEON, client);
+  await fetchDungeon('cryptohelper', process.env.DEVELOPERSDUNGEON, client);
 };

@@ -1,6 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const axios = require('axios');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -38,13 +37,13 @@ module.exports = {
     let coinembed;
 
     if (datacrypto == undefined || null) {
-      coinembed = new MessageEmbed()
-        .setColor('RED')
+      coinembed = new EmbedBuilder()
+        .setColor('Red')
         .setTitle('Error')
         .setDescription('Could not find a coin with the given id');
     } else {
-      coinembed = new MessageEmbed()
-        .setColor('RANDOM')
+      coinembed = new EmbedBuilder()
+        .setColor('Random')
         .setTitle(`Coin: ${datacrypto.name}`)
         .setThumbnail(datacrypto.image.large)
         .addFields(

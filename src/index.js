@@ -1,4 +1,4 @@
-const { Client, Intents } = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const Cluster = require('discord-hybrid-sharding');
 
 /* Misc */
@@ -7,9 +7,9 @@ const Cluster = require('discord-hybrid-sharding');
 /* Initialize client */
 const client = new Client({
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.DIRECT_MESSAGES,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.DirectMessages,
   ],
   shards: Cluster.data.SHARD_LIST,
   shardCount: Cluster.data.TOTAL_SHARDS,

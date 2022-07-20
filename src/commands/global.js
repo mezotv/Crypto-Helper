@@ -1,6 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const axios = require('axios');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -24,8 +23,8 @@ module.exports = {
         .catch(() => {
         });
     } catch (err) {}
-    const globalembed = new MessageEmbed()
-      .setColor('BLURPLE')
+    const globalembed = new EmbedBuilder()
+      .setColor('Blurple')
       .setTitle('Global Crypto Info')
       .addFields(
         { name: 'Active Cryptocurrencies', value: `${cryptoData.data.active_cryptocurrencies}`, inline: true },

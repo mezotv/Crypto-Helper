@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { readFileSync } = require('fs');
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
       .setDescription('Shows the current bitcoin gas price')),
 
   async execute(interaction, client) {
-    let gasembed = new MessageEmbed();
+    let gasembed = new EmbedBuilder();
     switch (interaction.options.getSubcommand()) {
       case 'ethereum': {
         let rawdata = readFileSync('./src/coindata/ethereum.json');

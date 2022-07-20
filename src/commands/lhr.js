@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -7,7 +6,7 @@ module.exports = {
     .setDescription('Gives info about Nvidias LHR Graphics Cards'),
 
   async execute(interaction, client) {
-    const lhrembed = new MessageEmbed()
+    const lhrembed = new EmbedBuilder()
       .setAuthor({
         name: `${client.user.username}`,
         iconURL: client.user.avatarURL(),

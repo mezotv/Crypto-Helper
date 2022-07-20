@@ -1,12 +1,11 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('vote')
     .setDescription('Vote for me!'),
   async execute(interaction, client) {
-    const votemebed = new MessageEmbed()
+    const votemebed = new EmbedBuilder()
       .setAuthor({
         name: `${client.user.username}`,
         iconURL: client.user.avatarURL(),
