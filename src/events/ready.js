@@ -1,8 +1,8 @@
 const { REST } = require('@discordjs/rest');
+const { ActivityType } = require('discord.js');
 const { Routes } = require('discord-api-types/v10');
-const { readdirSync } = require('fs');
+const { readdirSync, readFileSync } = require('fs');
 const { ChalkAdvanced } = require('chalk-advanced');
-const { readFileSync } = require('fs');
 
 module.exports = async (client) => {
   const commandFiles = readdirSync('./src/commands/').filter((file) => file.endsWith('.js'));
@@ -68,7 +68,7 @@ module.exports = async (client) => {
         client.user.setStatus('online');
       }
 
-      client.user.setActivity(`${status}`, { type: 'WATCHING' });
+      client.user.setActivity(`${status}`, { type: ActivityType.Watching });
     })();
   }, 15000);
 };
