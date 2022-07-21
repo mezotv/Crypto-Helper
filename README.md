@@ -1,8 +1,9 @@
 # Crypto Helper
 
 Crypto Helper is a open source bot crafted to give you all the info about crypto you need!
-[alt text](head.jpg)
 
+  <img src="head.jpg"/>
+  <hr>
 ## 🛠️ Installation Steps
 
 1. Fork this repository
