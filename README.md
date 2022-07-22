@@ -46,6 +46,11 @@ git checkout -b <your_branch_name>
 
 ```
 
+8. Run your code.
+```
+npm run start
+
+```
 
  To create a pull request, click on compare and pull requests. Please ensure you compare your feature branch to the desired branch of the repo you are suppose to make a PR to.
  Voila 🎉 You have made a PR to the project.
