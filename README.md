@@ -7,18 +7,17 @@ Crypto Helper is a open source bot crafted to give you all the info about crypto
 ## 🛠️ Installation Steps
 
 1. Fork this repository
+
 2. Clone your forked copy of the project.
 
 ```bash
 git clone --depth 1 https://github.com/<your username>/Crypto-Helper
-
 ```
 
 3. Change the working directory
 
 ```bash
 cd Crypto-Helper
-
 ```
 
 4. Add a reference to the original repository.
@@ -43,13 +42,12 @@ git pull upstream main
 
 ```
 git checkout -b <your_branch_name>
-
 ```
 
 8. Run your code.
+
 ```
 npm run start
-
 ```
 
  To create a pull request, click on compare and pull requests. Please ensure you compare your feature branch to the desired branch of the repo you are suppose to make a PR to.
