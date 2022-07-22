@@ -12,7 +12,7 @@ module.exports = {
 
       .setColor('#5865f4')
       .setTitle(':ping_pong:  Pong!')
-      .setDescription(`You are on cluster: **#${client.cluster.id + 1}** out of **2** clusters`)
+      .setDescription(`You are on cluster: #**${client.cluster.id + 1}** out of **${client.cluster.count}** clusters`)
       .addFields(
         {
           name: '**Cluster** latency',
