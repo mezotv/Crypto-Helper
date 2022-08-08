@@ -4,10 +4,14 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('miner')
     .setDescription('Shows a setup for the selected miner')
-    .addSubcommand((subCommand) => subCommand.setName('phoenixminer').setDescription('Setup for Phoenix miner'))
+    .addSubcommand((subCommand) => subCommand
+      .setName('phoenixminer')
+      .setDescription('Setup for Phoenix miner'))
     .addSubcommand((subCommand) => subCommand.setName('trexminer').setDescription('Setup for T-rex Miner'))
     .addSubcommand((subCommand) => subCommand.setName('nbminer').setDescription('Setup for NbMiner'))
-    .addSubcommand((subCommand) => subCommand.setName('teamredminer').setDescription('Setup for Team Red Miner'))
+    .addSubcommand((subCommand) => subCommand
+      .setName('teamredminer')
+      .setDescription('Setup for Team Red Miner'))
     .addSubcommand((subCommand) => subCommand.setName('xmrig').setDescription('Setup for XMRig'))
     .addSubcommand((subCommand) => subCommand.setName('salad').setDescription('Setup for Salad.io')),
 
@@ -26,7 +30,8 @@ module.exports = {
           .addFields(
             {
               name: '**Info**',
-              value: '> PhoenixMiner is fast (arguably the fastest) Ethash (Ethereum, ETC, etc.) miner that supports both AMD and Nvidia cards (including in mixed mining rigs). It runs under Windows x64 and Linux x64',
+              value:
+                '> PhoenixMiner is fast (arguably the fastest) Ethash (Ethereum, ETC, etc.) miner that supports both AMD and Nvidia cards (including in mixed mining rigs). It runs under Windows x64 and Linux x64',
               inline: false,
             },
             {
@@ -36,9 +41,9 @@ module.exports = {
               inline: false,
             },
           )
-          .addField(
-            'Mining Setup',
-            [
+          .addFields({
+            name: 'Mining Setup',
+            value: [
               '**Note!** You can get the pool address from the ites like **https://ethermine.org/**.',
               '**1.** Install **PhoenixMiner** from the url in the **title**. ',
               '**2.** **Open** or **create** any bat file and paste the folowing code:',
@@ -47,11 +52,13 @@ module.exports = {
               '**4.** Change **<YourWalletAddress>** to your wallet address and **<WorkerName>** to your desired worker name. The worker name is optional.',
               '**🥳Done!** Run that bat file and enjoy!',
             ].join('\n'),
-          )
+          })
           .setThumbnail(
             'https://cdn.discordapp.com/attachments/926292185748496446/972791200308416532/eth.png',
           )
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          .setFooter({
+            text: 'Crypto Helper made by Developer Dungeon Studios',
+          })
           .setTimestamp();
         break;
       }
@@ -67,7 +74,8 @@ module.exports = {
           .addFields(
             {
               name: '**Info**',
-              value: '> T-Rex is a versatile cryptocurrency mining software. It supports a variety of algorithms. T-Rex is currently supported on NVIDIA GPUs only.',
+              value:
+                '> T-Rex is a versatile cryptocurrency mining software. It supports a variety of algorithms. T-Rex is currently supported on NVIDIA GPUs only.',
               inline: false,
             },
             {
@@ -77,9 +85,9 @@ module.exports = {
               inline: false,
             },
           )
-          .addField(
-            'Mining Setup',
-            [
+          .addFields({
+            name: 'Mining Setup',
+            value: [
               '**Note!** You can get the pool address from the ites like **https://ethermine.org/**.',
               '**1.** Install **T-Rex** from the url in the title. ',
               '**2.** **Open** or **create** any bat file and paste the folowing code:',
@@ -90,9 +98,11 @@ module.exports = {
               '**Optional** Go to **http://127.0.0.1:4067/** to see your miner stats.',
               '**🥳Done!** Run that bat file and enjoy!',
             ].join('\n'),
-          )
+          })
           .setThumbnail('https://trex-miner.com/img/t-rex.png')
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          .setFooter({
+            text: 'Crypto Helper made by Developer Dungeon Studios',
+          })
           .setTimestamp();
         break;
       }
@@ -108,7 +118,8 @@ module.exports = {
           .addFields(
             {
               name: '**Info**',
-              value: '> NBMiner comes with multiple different files that say start_ all those files are pre-made templates for mining different cryptocurrencies.',
+              value:
+                '> NBMiner comes with multiple different files that say start_ all those files are pre-made templates for mining different cryptocurrencies.',
               inline: false,
             },
             {
@@ -118,9 +129,9 @@ module.exports = {
               inline: false,
             },
           )
-          .addField(
-            'Mining Setup',
-            [
+          .addFields({
+            name: 'Mining Setup',
+            value: [
               '**Note!** You can get the pool address from the ites like **https://ethermine.org/**.',
               '**1.** Install **T-Rex** from the url in the title. ',
               '**2.** **Open** or **create** any bat file and paste the folowing code:',
@@ -130,11 +141,13 @@ module.exports = {
               '**5.** Change **<YourWalletAddress>** to your wallet address and **<WorkerName>** to your desired worker name.',
               '**🥳Done!** Run that bat file and enjoy!',
             ].join('\n'),
-          )
+          })
           .setThumbnail(
             'https://github.com/NebuTech/NBMiner/blob/master/logo.png?raw=true',
           )
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          .setFooter({
+            text: 'Crypto Helper made by Developer Dungeon Studios',
+          })
           .setTimestamp();
         break;
       }
@@ -150,7 +163,8 @@ module.exports = {
           .addFields(
             {
               name: '**Info**',
-              value: '> This is an optimized miner for AMD GPUs and Xilinx FPGAs created by todxx and kerney666.',
+              value:
+                '> This is an optimized miner for AMD GPUs and Xilinx FPGAs created by todxx and kerney666.',
               inline: false,
             },
             {
@@ -160,9 +174,9 @@ module.exports = {
               inline: false,
             },
           )
-          .addField(
-            'Mining Setup',
-            [
+          .addFields({
+            name: 'Mining Setup',
+            value: [
               '**Note!** You can get the pool address from the ites like **https://ethermine.org/**.',
               '**1.** Install **T-Rex** from the url in the title. ',
               '**2.** **Open** or **create** any bat file and paste the folowing code:',
@@ -172,11 +186,13 @@ module.exports = {
               '**5.** Change **<YourWalletAddress>** to your wallet address and **<WorkerName>** to your desired worker name.',
               '**🥳Done!** Run that bat file and enjoy!',
             ].join('\n'),
-          )
+          })
           .setThumbnail(
             'https://www.teamredminer.com/assets/img/TRMrw_transp.png',
           )
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          .setFooter({
+            text: 'Crypto Helper made by Developer Dungeon Studios',
+          })
           .setTimestamp();
         break;
       }
@@ -192,7 +208,8 @@ module.exports = {
           .addFields(
             {
               name: '**Info**',
-              value: '> High performance, open source, cross platform RandomX, KawPow, CryptoNight and AstroBWT CPU/GPU miner',
+              value:
+                '> High performance, open source, cross platform RandomX, KawPow, CryptoNight and AstroBWT CPU/GPU miner',
               inline: false,
             },
             {
@@ -202,9 +219,10 @@ module.exports = {
               inline: false,
             },
           )
-          .addField(
-            'Mining Setup',
-            [
+          .addFields({
+            name: 'Mining Setup',
+
+            value: [
               '**Note!** Only use for **cpu mining**. Otherwise use **t-rex** etc.',
               '**1.** Install **T-Rex** from the url in the title. ',
               '**2.** **Open** or **create** any bat file and paste the folowing code:',
@@ -214,9 +232,11 @@ module.exports = {
               '**5.** Change **<YourWalletAddress>** to your wallet address and **<WorkerName>** to your desired worker name.',
               '**🥳Done!** Run the bat file and enjoy!',
             ].join('\n'),
-          )
+          })
           .setThumbnail('https://avatars.githubusercontent.com/u/27528955?v=4')
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          .setFooter({
+            text: 'Crypto Helper made by Developer Dungeon Studios',
+          })
           .setTimestamp();
         break;
       }
@@ -232,7 +252,8 @@ module.exports = {
           .addFields(
             {
               name: '**Info**',
-              value: '> Salad is the easiest and most trusted way to computeshare.',
+              value:
+                '> Salad is the easiest and most trusted way to computeshare.',
               inline: false,
             },
             {
@@ -242,9 +263,9 @@ module.exports = {
               inline: false,
             },
           )
-          .addField(
-            'Mining Setup',
-            [
+          .addFields({
+            name: 'Mining Setup',
+            values: [
               '**1.** Install **Salad** from the url in the title.',
               '**2.** Enter your email and the code sent to it',
               '**3.** You will get asked for a referal code. Make sure to enter **helper** to support our project. Once entered press the checkmark button next to it.',
@@ -253,11 +274,13 @@ module.exports = {
               '**Optional** Go to **https://app.salad.io/earn/summary** to keep track of your income.',
               '**🥳Done!** Now just wait for your money to come in!',
             ].join('\n'),
-          )
+          })
           .setThumbnail(
             'https://cdn.discordapp.com/attachments/697180189729226814/734781267509248111/favicon.512x512.png',
           )
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          .setFooter({
+            text: 'Crypto Helper made by Developer Dungeon Studios',
+          })
 
           .setTimestamp();
         break;
