@@ -26,8 +26,7 @@ module.exports = {
       .addFields({
         name: '> General',
         value: [
-          '**❯ Dev Team:** [Developers Dungeon Studios](https://developersdungeon.xyz/)',
-          '**❯  Discord:** [Server Invite](https://discord.gg/KfBkKKydfg)',
+          '**❯  Discord:** [Server Invite](https://discord.gg/vMyXAxEznS)',
           '**❯  Client:** [Bot Invite](https://discord.com/oauth2/authorize?client_id=747050613656911892&permissions=274878294080&scope=bot%20applications.commands)',
           `**❯  Servers:** ${client.guilds.cache.size.toLocaleString()} `,
           `**❯  Users:** ${client.guilds.cache

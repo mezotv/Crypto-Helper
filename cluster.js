@@ -2,7 +2,7 @@ const Cluster = require('discord-hybrid-sharding');
 require('dotenv').config();
 
 const manager = new Cluster.Manager(`${__dirname}/src/index.js`, {
-  totalShards: 4, // or 'auto'
+  totalShards: 1, // or 'auto'
   /// Check below for more options
   shardsPerClusters: 2,
   // totalClusters: 7,

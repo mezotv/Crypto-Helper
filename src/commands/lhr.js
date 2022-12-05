@@ -34,7 +34,10 @@ module.exports = {
       .setImage(
         'https://cdn.discordapp.com/attachments/926292185748496446/974383813218152468/lhr.png',
       )
-      .setFooter({ text: 'Guide by Plerion#6666' })
+      .setFooter({
+        text: interaction.user.tag,
+        iconURL: interaction.user.avatarURL({ dynamic: true }),
+      })
       .setTimestamp();
 
     await interaction.reply({
