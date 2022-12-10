@@ -1,27 +1,16 @@
-const { Client, GatewayIntentBits } = require('discord.js');
-const Cluster = require('discord-hybrid-sharding');
-
-/* Misc */
-// console.clear();
+const { Application } = require('interactions.js');
+const { fetchGas } = require('./util/fetchGas');
+require('dotenv').config();
 
 /* Initialize client */
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.DirectMessages,
-  ],
-  shards: Cluster.data.SHARD_LIST,
-  shardCount: Cluster.data.TOTAL_SHARDS,
+const client = new Application({
+  botToken: process.env.TOKEN,
+  publicKey: process.env.PUBLICKEY,
+  applicationId: process.env.APPLICATIONID,
 });
-
 const cryptoClientComponents = async () => {
   await require('./util/cryptoClient')(client);
-  await require('./util/botlists')(client);
-
-  await require('./db/dbHandler');
 };
-const { fetchGas } = require('./util/fetchGas');
 
 fetchGas();
 cryptoClientComponents();

@@ -30,7 +30,8 @@
     "dotenv": "^16.0.0",
     "glob": "^8.0.0",
     "hashify-matchify": "^1.0.0",
-    "interactions.js": "^1.1.1",
+    "inter
+actions.js": "^1.0.8",
     "mongoose": "^6.4.6",
     "ms": "^2.1.3",
     "os": "^0.1.2"

@@ -1,20 +1,25 @@
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const { Embed } = require('interactions.js');
 const { readFileSync } = require('fs');
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName('gas')
-    .setDescription('Shows the current gas price for the selected coin')
-    .addSubcommand((subCommand) => subCommand
-      .setName('ethereum')
-      .setDescription('Shows the current ethereum gas price'))
-    .addSubcommand((subCommand) => subCommand
-      .setName('bitcoin')
-      .setDescription('Shows the current bitcoin gas price')),
-
+  name: 'gas',
+  description: 'Get the current gas price for the selected coin',
+  options: [
+    {
+      name: 'ethereum',
+      description: 'Shows the current ethereum gas price',
+      type: 1,
+    },
+    {
+      name: 'bitcoin',
+      description: 'Shows the current bitcoin gas price',
+      type: 1,
+    },
+  ],
   async execute(interaction, client) {
-    let gasembed = new EmbedBuilder();
-    switch (interaction.options.getSubcommand()) {
+
+    let gasembed = new Embed();
+    switch (interaction.data.options[0].name) {
       case 'ethereum': {
         let rawdata = readFileSync('./src/coindata/ethereum.json');
         let data = JSON.parse(rawdata);
@@ -58,10 +63,7 @@ module.exports = {
           slowemoji = '🟢';
         }
         gasembed
-          .setAuthor({
-            name: `${client.user.username}`,
-            iconURL: client.user.avatarURL(),
-          })
+          .setAuthor('Crypto Helper', 'https://cdn.discordapp.com/avatars/747050613656911892/f571ada569c6bf641cbd862ba77dceae.png?size=512', 'https://discord.com/oauth2/authorize?client_id=747050613656911892&permissions=274878294080&scope=bot%20applications.commands')
           .setColor(embedcolor)
           .setTitle(`Last Block: **${data.result.LastBlock}**`)
           .setThumbnail(
@@ -69,7 +71,7 @@ module.exports = {
           )
           .setURL(`https://etherscan.io/block/${data.result.LastBlock}`)
           .setDescription('Current Ethereum transaction Price:')
-          .addFields(
+          .addFields([
             {
               name: '⚡Fast',
               value: `> ${fastemoji} **${data.result.FastGasPrice}**gwei`,
@@ -90,19 +92,14 @@ module.exports = {
               value: `> **${data.result.suggestBaseFee}**gwei`,
               inline: true,
             },
-          )
+          ])
           .setTimestamp()
-          .setFooter({
-            text: 'Crypto Helper made by Developer Dungeon Studios',
-          });
+          .setFooter('Crypto Helper made by Dominik#5555');
         break;
       }
       case 'bitcoin': {
         gasembed
-          .setAuthor({
-            name: `${client.user.username}`,
-            iconURL: client.user.avatarURL(),
-          })
+          .setAuthor('Crypto Helper', 'https://cdn.discordapp.com/avatars/747050613656911892/f571ada569c6bf641cbd862ba77dceae.png?size=512', 'https://discord.com/oauth2/authorize?client_id=747050613656911892&permissions=274878294080&scope=bot%20applications.commands')
           .setColor('#5865f4')
           .setTitle('Bitcoin Fees')
           .setThumbnail(
@@ -110,7 +107,7 @@ module.exports = {
           )
           .setURL('https://wikipedia.org/wiki/Bitcoin')
           .setDescription('Current Bitcoin transaction price:')
-          .addFields(
+          .addFields([
             {
               name: '⚡Fast',
               value: '> **102**satoshis/byte',
@@ -126,17 +123,15 @@ module.exports = {
               value: '> **88**satoshis/byte',
               inline: true,
             },
-          )
+          ])
           .setTimestamp()
-          .setFooter({
-            text: 'Crypto Helper made by Developer Dungeon Studios',
-          });
+          .setFooter('Crypto Helper made by Dominik#5555');
       }
         break;
       default:
         break;
     }
-    interaction.reply({
+    return interaction.editReply({
       embeds: [gasembed],
     });
   },

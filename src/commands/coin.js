@@ -1,20 +1,24 @@
 const axios = require('axios');
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const { Embed } = require('interactions.js');
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName('coin')
-    .setDescription('Get advanced info about a crypto currenzy')
-    .addStringOption((option) => option.setName('name')
-      .setDescription('name for the coin you want to get')
-      .setRequired(true)),
-
+  name: 'coin',
+  description: 'Get advanced info about a crypto currency',
+  options: [
+    {
+      name: 'content',
+      description: 'The name for the coin you want to get',
+      type: 3,
+      required: true,
+    },
+  ],
   async execute(interaction, client) {
+
     let datacrypto;
     try {
       await axios({
         method: 'GET',
-        url: `https://coingecko.p.rapidapi.com/coins/${interaction.options.getString('name')}`,
+        url: `https://coingecko.p.rapidapi.com/coins/${interaction.data.options[0]?.value}`,
         params: {
           localization: 'true',
           tickers: 'true',
@@ -37,16 +41,16 @@ module.exports = {
     let coinembed;
 
     if (datacrypto == undefined || null) {
-      coinembed = new EmbedBuilder()
-        .setColor('Red')
+      coinembed = new Embed()
+        .setColor('#F30D0D')
         .setTitle('Error')
         .setDescription('Could not find a coin with the given id');
     } else {
-      coinembed = new EmbedBuilder()
-        .setColor('Random')
+      coinembed = new Embed()
+        .setColor('#DEF007')
         .setTitle(`Coin: ${datacrypto.name}`)
         .setThumbnail(datacrypto.image.large)
-        .addFields(
+        .addFields([
           { name: 'Symbol', value: datacrypto.symbol, inline: true },
           { name: 'Market Cap Rank', value: `#${datacrypto.market_cap_rank}`, inline: true },
           { name: 'Price in USD', value: `$${datacrypto.market_data.current_price.usd}`, inline: true },
@@ -56,14 +60,13 @@ module.exports = {
           { name: 'Circulating Supply', value: `${datacrypto.market_data.circulating_supply}`, inline: true },
           { name: 'Total Supply', value: `${datacrypto.market_data.total_supply}`, inline: true },
           { name: 'Website', value: `[${datacrypto.links.homepage[0]}](${datacrypto.links.homepage[0]})`, inline: true },
-        )
+        ])
         .setTimestamp()
-        .setFooter({
-          text: 'Crypto Helper made by Developer Dungeon Studios',
-        });
-    }
-    await interaction.reply({
+        .setFooter('Crypto Helper made by Dominik#5555');
+    
+    return interaction.editReply({
       embeds: [coinembed],
     });
-  },
-};
+  }
+},
+}

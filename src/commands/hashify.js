@@ -1,24 +1,27 @@
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const { Embed } = require('interactions.js');
 const { hashify } = require('hashify-matchify');
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName('hashify')
-    .setDescription('Hash a given string')
-    .addStringOption((option) => option
-      .setName('content')
-      .setDescription('The string you want to hash')
-      .setRequired(true)),
-
+  name: 'hashify',
+  description: 'Generate a hash for the given string',
+  options: [
+    {
+      name: 'content',
+      description: 'The string you want to hash',
+      type: 3,
+      required: true,
+    },
+  ],
   async execute(interaction) {
-    const hashstring = `**${interaction.options.getString('content')}**`;
+    const value = String(interaction.data.options[0]?.value);
+    const hashstring = `**${value}**`;
 
-    const { hash } = await hashify(hashstring);
+    const { hash } = await hashify(value);
 
-    const hashembed = new EmbedBuilder()
+    const hashembed = new Embed()
       .setColor('#5865f4')
       .setTitle('🪴 String hashed!')
-      .addFields(
+      .addFields([
         {
           name: '**Input String:**',
           value: `> ${hashstring}`,
@@ -29,9 +32,9 @@ module.exports = {
           value: `||${hash}||`,
           inline: false,
         },
-      );
+      ]);
 
-    await interaction.reply({
+    return interaction.editReply({
       embeds: [hashembed],
     });
   },

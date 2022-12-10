@@ -1,29 +1,29 @@
-const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const { Embed } = require('interactions.js');
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName('help')
-    .setDescription('Get a list of all commands supported by the bot')
-    .addSubcommand((subCommand) => subCommand.setName('utility').setDescription('List of all utility commands'))
-    .addSubcommand((subCommand) => subCommand.setName('crypto').setDescription('List of all crypto commands')),
-
+  name: 'help',
+  description: 'Get a list of all commands supported by the bot.',
+  options: [
+    {
+      name: 'utility',
+      description: 'List of all utility commands',
+      type: 1,
+    },
+    {
+      name: 'crypto',
+      description: 'List of all crypto commands',
+      type: 1,
+    },
+  ],
   async execute(interaction, client) {
-    let helpembed = new EmbedBuilder();
-    switch (interaction.options.getSubcommand()) {
+    let helpembed = new Embed();
+    switch (interaction.data.options[0].name) {
       case 'utility': {
         helpembed
-          .setAuthor({
-            name: `${client.user.username}`,
-            iconURL: client.user.avatarURL(),
-          })
+          .setAuthor('Crypto Helper', 'https://cdn.discordapp.com/avatars/747050613656911892/f571ada569c6bf641cbd862ba77dceae.png?size=512', 'https://discord.com/oauth2/authorize?client_id=747050613656911892&permissions=274878294080&scope=bot%20applications.commands')
           .setColor('#5865f4')
           .setTitle('📰 Utility Commands!')
-          .addFields(
-            {
-              name: '**/ping**',
-              value: '> Shows the api and client latency',
-              inline: true,
-            },
+          .addFields([
             {
               name: '**/hashify [string]**',
               value: '> Generate a hash for the given string',
@@ -44,20 +44,17 @@ module.exports = {
               value: '> Shows the link to vote for the bot',
               inline: true,
             },
-          )
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          ])
+          .setFooter('Crypto Helper made by Dominik#5555')
           .setTimestamp();
         break;
       }
       case 'crypto': {
         helpembed
-          .setAuthor({
-            name: `${client.user.username}`,
-            iconURL: client.user.avatarURL(),
-          })
+          .setAuthor('Crypto Helper', 'https://cdn.discordapp.com/avatars/747050613656911892/f571ada569c6bf641cbd862ba77dceae.png?size=512', 'https://discord.com/oauth2/authorize?client_id=747050613656911892&permissions=274878294080&scope=bot%20applications.commands')
           .setColor('#5865f4')
           .setTitle('⛏️ Crypto Commands!')
-          .addFields(
+          .addFields([
             {
               name: '**/lhr**',
               value: '> Get info about nvidias lhr mode',
@@ -83,15 +80,15 @@ module.exports = {
               value: '> Shows a setup guide for the selected miner aswell as some info',
               inline: true,
             },
-          )
-          .setFooter({ text: 'Crypto Helper made by Developer Dungeon Studios' })
+          ])
+          .setFooter('Crypto Helper made by Dominik#5555')
           .setTimestamp();
         break;
       }
       default:
         break;
     }
-    await interaction.reply({
+    return interaction.editReply({
       embeds: [helpembed],
     });
   },
